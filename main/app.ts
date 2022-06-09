@@ -32,10 +32,9 @@ const createWindow = async () => {
   const win = new BrowserWindow({
     title: `NFT Worlds v${VERSION}`,
 
-    width: 1280,
-    height: 720,
-    minWidth: 1280,
-    minHeight: 720,
+    width: 1600,
+    height: 900,
+    resizable: false,
 
     webPreferences: {
       nodeIntegration: true,
