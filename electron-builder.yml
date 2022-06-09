@@ -1,6 +1,14 @@
 productName: NFT Worlds
 appId: com.nftworlds.launcher
 copyright: Copyright 2022 NFT Worlds LLC
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
 publish:
   - github
 mac:
