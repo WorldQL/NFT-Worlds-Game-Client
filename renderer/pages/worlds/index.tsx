@@ -15,7 +15,7 @@ const Worlds: NextPage = () => {
   return (
     <Layout>
       <h1 className='text-center text-[4.8rem] font-bold my-6'>Worlds</h1>
-      <div className='flex gap-[20px] mb-10'>
+      <div className='mb-8 grid grid-cols-[repeat(5,var(--card-width))] justify-between'>
         <Dropdown
           value=''
           options={['All Worlds']}
@@ -28,15 +28,15 @@ const Worlds: NextPage = () => {
           onChange={() => undefined}
         />
 
-        <div className='grow' />
-
-        <Searchbar
-          value=''
-          placeholder='Search Worlds'
-          onChange={() => {
-            void 0
-          }}
-        />
+        <div className='col-span-3 flex justify-end'>
+          <Searchbar
+            value=''
+            placeholder='Search Worlds'
+            onChange={() => {
+              void 0
+            }}
+          />
+        </div>
       </div>
 
       {worlds ? <WorldGrid worlds={worlds} /> : null}

@@ -6,23 +6,32 @@ interface Props {
 }
 
 export const WorldCard: FC<Props> = ({ world }) => (
-  <div className='flex flex-col w-[260px]'>
+  <div className='flex flex-col w-[var(--card-width)]'>
     <img
       className='h-[200px] object-cover rounded-t-lg'
       src={world.branding.banner}
     />
-    <div className='bg-neutral-800 rounded-b-lg p-2 text-center'>
-      <h2 className='font-bold text-lg'>{world.name}</h2>
+    <div className='bg-neutral-800 rounded-b-lg p-3 pt-0 pb-4 text-center'>
+      <div
+        className='aspect-square w-[4.5rem] h-auto rounded-full bg-cover border-2 shadow-[inset_0_0_8px_black] mt-[-2.25rem] mx-auto mb-2'
+        style={{ backgroundImage: `url(${world.branding.icon})` }}
+      />
 
-      <span className='font-semibold text-xs text-text-sub'>
-        #{world.worldId} WORLD
-      </span>
+      <div>
+        <h2 className='font-bold text-lg'>{world.name}</h2>
 
-      <p className='text-xs text-text-sub line-clamp-2'>{world.description}</p>
+        <span className='font-semibold text-xs text-text-sub'>
+          #{world.worldId} WORLD
+        </span>
 
-      <span className='font-semibold text-xs text-text-sub'>
-        {world.playersOnline} PLAYERS ONLINE
-      </span>
+        <p className='text-xs text-text-sub line-clamp-2'>
+          {world.description}
+        </p>
+
+        <span className='font-semibold text-xs text-text-sub'>
+          {world.playersOnline} PLAYERS ONLINE
+        </span>
+      </div>
     </div>
   </div>
 )

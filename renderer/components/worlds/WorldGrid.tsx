@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const WorldGrid: FC<Props> = ({ worlds }) => (
-  <div className='w-full grid gap-y-7 grid-cols-[repeat(5,260px)] justify-between'>
+  <div className='w-full grid gap-y-7 grid-cols-[repeat(5,var(--card-width))] justify-between'>
     {worlds.map(world => (
       <WorldCard key={world.worldId} world={world} />
     ))}

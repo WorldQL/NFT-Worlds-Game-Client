@@ -17,7 +17,7 @@ export const Dropdown: FC<Props> = ({ options, value, onChange }) => {
 
   return (
     <select
-      className='rounded-full bg-neutral-600 px-3 py-4 w-[260px]'
+      className='rounded-full bg-neutral-600 px-3 py-4 w-[var(--card-width)]'
       value={value}
       onChange={handleChange}
     >
