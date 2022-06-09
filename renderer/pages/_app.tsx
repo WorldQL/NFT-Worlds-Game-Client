@@ -5,9 +5,9 @@ import { Titlebar } from '~/components/layout/Titlebar'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <div className='w-screen h-screen flex flex-col'>
+    <div className='w-screen h-screen flex flex-col rounded-window overflow-hidden'>
       <Titlebar />
-      <div className='w-full h-full bg-white rounded-b-window'>
+      <div className='w-full h-full bg-neutral-900 text-text rounded-b-window'>
         <Component {...pageProps} />
       </div>
     </div>

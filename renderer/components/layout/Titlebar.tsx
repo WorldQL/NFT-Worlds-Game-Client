@@ -9,10 +9,10 @@ export const Titlebar: FC = () => {
   }, [])
 
   return (
-    <div className='w-full h-6 bg-gray-800 rounded-t-window drag flex items-center'>
-      <span className='pl-1 text-sm text-white flex-grow'>NFT Worlds</span>
+    <div className='w-full h-6 bg-neutral-800 rounded-t-window drag flex items-center'>
+      <span className='pl-1 text-sm text-text flex-grow'>NFT Worlds</span>
       <span
-        className='text-white pr-2 cursor-pointer no-drag'
+        className='text-text pr-2 cursor-pointer no-drag'
         onClick={handleClose}
       >
         X
