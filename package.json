@@ -7,8 +7,10 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "publish": "nextron build --publish=always",
     "postinstall": "electron-builder install-app-deps",
-    "lint": "xo ./main ./renderer"
+    "lint": "xo ./main ./renderer",
+    "test": "yarn run lint"
   },
   "devDependencies": {
     "@types/node": "^16",
