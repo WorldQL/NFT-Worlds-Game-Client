@@ -8,6 +8,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        text: {
+          DEFAULT: '#ffffff',
+          sub: '#b1b1b1',
+          action: '#232323',
+        },
+        cta: {
+          green: '#03ff21',
+          cyan: '#03ffda',
+        },
+      },
       borderRadius: {
         window: '6px',
       },
