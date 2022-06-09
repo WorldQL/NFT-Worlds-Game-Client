@@ -47,6 +47,7 @@
       }]
     }],
 
+    "@next/next/no-img-element": 0,
     "@next/next/no-html-link-for-pages": ["error", "renderer/pages/"],
 
     "node/file-extension-in-import": 0,
