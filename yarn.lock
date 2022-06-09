@@ -1711,6 +1711,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tailwindcss/line-clamp@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@tailwindcss/line-clamp@npm:0.4.0"
+  peerDependencies:
+    tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
+  checksum: 71ba25a4a18323496a7af34e55871121b8459530b0e5696c4173fd65a76162675619f1d1158a8a32e1ace2069333949bef6f1061b17f49fef98dc2291a979dcd
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -6755,6 +6764,7 @@ __metadata:
   resolution: "nft-worlds-client@workspace:."
   dependencies:
     "@electron/remote": ^2.0.8
+    "@tailwindcss/line-clamp": ^0.4.0
     "@types/node": ^16
     "@types/react": ^18.0.12
     autoprefixer: ^10.4.7
