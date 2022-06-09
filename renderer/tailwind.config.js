@@ -1,18 +1,28 @@
-const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './renderer/pages/**/*.{js,ts,jsx,tsx}',
     './renderer/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    colors: {
-      // Use colors only specified
-      white: colors.white,
-      gray: colors.gray,
-      blue: colors.blue,
+    extend: {
+      borderRadius: {
+        window: '6px',
+      },
     },
-    extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.drag': {
+          '-webkit-app-region': 'drag',
+        },
+        '.no-drag': {
+          '-webkit-app-region': 'no-drag',
+        },
+      })
+    }),
+  ],
 }

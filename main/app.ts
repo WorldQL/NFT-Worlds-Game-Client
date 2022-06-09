@@ -36,6 +36,9 @@ const createWindow = async () => {
     height: 900,
     resizable: false,
 
+    frame: false,
+    transparent: true,
+
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
