@@ -1,32 +1,126 @@
-import { app } from 'electron';
-import serve from 'electron-serve';
-import { createWindow } from './helpers';
+import * as remote from '@electron/remote/main'
+import { app, BrowserWindow, dialog } from 'electron'
+import log from 'electron-log'
+import serve from 'electron-serve'
+import Store from 'electron-store'
+import { autoUpdater } from 'electron-updater'
+import { join as joinPath } from 'node:path'
+import process from 'node:process'
+import { APP_ROOT, IS_DEV, VERSION } from './env'
+// TODO
+// import { initHandlers } from './ipc/handler'
+// import { getSecureKey } from './lib/encryption'
+// Import { exists } from './lib/http'
 
-const isProd: boolean = process.env.NODE_ENV === 'production';
-
-if (isProd) {
-  serve({ directory: 'app' });
-} else {
-  app.setPath('userData', `${app.getPath('userData')} (development)`);
+if (process.platform === 'win32') {
+  app.setAppUserModelId('NFT Worlds')
 }
 
-(async () => {
-  await app.whenReady();
+const instanceLock = app.requestSingleInstanceLock()
+if (!instanceLock) app.quit()
 
-  const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
-  });
+Object.assign(console, log.functions)
+log.transports.file.resolvePath = () => joinPath(APP_ROOT, 'logs', 'main.log')
 
-  if (isProd) {
-    await mainWindow.loadURL('app://./home.html');
-  } else {
-    const port = process.argv[2];
-    await mainWindow.loadURL(`http://localhost:${port}/home`);
-    mainWindow.webContents.openDevTools();
+autoUpdater.autoDownload = false
+autoUpdater.logger = log
+
+remote.initialize()
+Store.initRenderer()
+
+const createWindow = async () => {
+  const win = new BrowserWindow({
+    title: `NFT Worlds v${VERSION}`,
+
+    width: 1280,
+    height: 720,
+    minWidth: 1280,
+    minHeight: 720,
+
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  })
+
+  win.removeMenu()
+  remote.enable(win.webContents)
+
+  const load = async () => {
+    if (IS_DEV) {
+      const port = process.argv[2]
+      await win.loadURL(`http://localhost:${port}/home`)
+
+      win.webContents.openDevTools()
+    } else {
+      await win.loadURL('app://./home.html')
+    }
+
+    win.focus()
   }
-})();
+
+  return { win, load }
+}
+
+const checkForUpdates = async () => {
+  if (IS_DEV) return false
+
+  const noUpdateFile = joinPath(APP_ROOT, '.noupdate')
+  // TODO
+  // const noUpdate = await exists(noUpdateFile)
+  // if (noUpdate) return false
+
+  const updates = await autoUpdater.checkForUpdates()
+  if (updates === null) return false
+
+  return updates.cancellationToken !== undefined
+}
+
+// Serve app in prod
+if (!IS_DEV) serve({ directory: 'app' })
+
+void app.whenReady().then(async () => {
+  const updateCheckJob = checkForUpdates()
+
+  // TODO
+  // // @ts-expect-error Global Assign
+  // global.__SECURE_STORE_KEY = getSecureKey()
+
+  const { win, load } = await createWindow()
+  // TODO
+  // initHandlers(win.webContents)
+  await load()
+
+  autoUpdater.on('download-progress', ({ percent }) => {
+    win.setProgressBar(percent / 100, { mode: 'normal' })
+  })
+
+  autoUpdater.on('update-downloaded', async () => {
+    win.setProgressBar(-1)
+
+    const { response } = await dialog.showMessageBox(win, {
+      type: 'info',
+      title: win.title,
+      message: 'Update Available',
+      detail:
+        'An update has been downloaded, restart the client to finish installing.',
+      buttons: ['Restart Now', 'Restart Later'],
+      cancelId: 1,
+    })
+
+    if (response === 0) app.quit()
+  })
+
+  const hasUpdate = await updateCheckJob
+  if (hasUpdate) void autoUpdater.downloadUpdate()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      void createWindow()
+    }
+  })
+})
 
 app.on('window-all-closed', () => {
-  app.quit();
-});
+  if (process.platform !== 'darwin') app.quit()
+})
