@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
-import 'tailwindcss/tailwind.css'
 import { Titlebar } from '~/components/layout/Titlebar'
+import '~/styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
