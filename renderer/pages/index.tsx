@@ -1,8 +1,8 @@
 import { type NextPage } from 'next'
 import React from 'react'
 
-const Home: NextPage = () => {
+const Root: NextPage = () => {
   return <div>TODO</div>
 }
 
-export default Home
+export default Root

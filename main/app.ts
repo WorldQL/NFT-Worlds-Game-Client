@@ -6,7 +6,7 @@ import Store from 'electron-store'
 import { autoUpdater } from 'electron-updater'
 import { join as joinPath } from 'node:path'
 import process from 'node:process'
-import { APP_ROOT, IS_DEV, VERSION } from './env'
+import { APP_ROOT, IS_DEV, VERSION } from './lib/env'
 // TODO
 // import { initHandlers } from './ipc/handler'
 // import { getSecureKey } from './lib/encryption'
@@ -49,11 +49,11 @@ const createWindow = async () => {
   const load = async () => {
     if (IS_DEV) {
       const port = process.argv[2]
-      await win.loadURL(`http://localhost:${port}/home`)
+      await win.loadURL(`http://localhost:${port}/`)
 
       win.webContents.openDevTools()
     } else {
-      await win.loadURL('app://./home.html')
+      await win.loadURL('app://./index.html')
     }
 
     win.focus()
