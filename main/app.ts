@@ -98,9 +98,7 @@ void app.whenReady().then(async () => {
   // initHandlers(win.webContents)
   await load()
 
-  app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit()
-  })
+  app.on('window-all-closed', () => app.quit())
 
   autoUpdater.on('download-progress', ({ percent }) => {
     win.setProgressBar(percent / 100, { mode: 'normal' })
@@ -124,10 +122,4 @@ void app.whenReady().then(async () => {
 
   const hasUpdate = await updateCheckJob
   if (hasUpdate) void autoUpdater.downloadUpdate()
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      void createWindow()
-    }
-  })
 })
