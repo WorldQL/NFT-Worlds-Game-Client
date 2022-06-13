@@ -6,6 +6,7 @@ import Store from 'electron-store'
 import { autoUpdater } from 'electron-updater'
 import { join as joinPath } from 'node:path'
 import process from 'node:process'
+import { authenticate } from './lib/auth'
 import { APP_ROOT, IS_DEV, VERSION } from './lib/env'
 // TODO
 // import { initHandlers } from './ipc/handler'
@@ -38,6 +39,7 @@ const createWindow = async () => {
 
     frame: false,
     transparent: true,
+    show: false,
 
     webPreferences: {
       nodeIntegration: true,
@@ -58,6 +60,7 @@ const createWindow = async () => {
       await win.loadURL('app://./index.html')
     }
 
+    win.show()
     win.focus()
   }
 
@@ -90,8 +93,14 @@ void app.whenReady().then(async () => {
 
   const { win, load } = await createWindow()
   // TODO
+  const { profile, nftwToken } = await authenticate()
+  // TODO
   // initHandlers(win.webContents)
   await load()
+
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit()
+  })
 
   autoUpdater.on('download-progress', ({ percent }) => {
     win.setProgressBar(percent / 100, { mode: 'normal' })
@@ -121,8 +130,4 @@ void app.whenReady().then(async () => {
       void createWindow()
     }
   })
-})
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
 })
