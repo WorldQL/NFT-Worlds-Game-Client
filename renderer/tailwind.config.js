@@ -22,6 +22,10 @@ module.exports = {
           top: '#484848',
           bottom: '#232323',
         },
+        blur: {
+          1: 'rgba(255, 255, 255, 0.1)',
+          2: 'rgba(255, 255, 255, 0.2)',
+        },
       },
       borderRadius: {
         window: '6px',
@@ -40,7 +44,7 @@ module.exports = {
         },
         '.bgblur': {
           'background-color': 'rgba(255, 255, 255, 0.1)',
-          'backdrop-filter': 'blur(10px)',
+          'backdrop-filter': 'blur(var(--blur-amount))',
           'box-shadow': '0 6px 6px rgb(0 0 0 / 30%)',
         },
       })

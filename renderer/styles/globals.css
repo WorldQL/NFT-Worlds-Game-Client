@@ -5,4 +5,6 @@
 :root {
   --pad: 5rem;
   --card-width: 260px;
+
+  --blur-amount: 10px;
 }
