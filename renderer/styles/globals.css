@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 :root {
+  --bg-darken: rgb(0 0 0 / 40%);
+  --bg-gradient: linear-gradient();
+  --bg-image: url('~/assets/images/background.png');
+  --background: var(--bg-darken) var(--bg-image);
+
   --pad: 5rem;
   --card-width: 260px;
 
   --blur-amount: 10px;
+}
+
+#background {
+  position: relative;
+  background: var(--background);
+  background-blend-mode: darken;
 }

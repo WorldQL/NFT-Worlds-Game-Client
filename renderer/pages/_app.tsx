@@ -18,7 +18,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <div className='w-screen h-screen flex flex-col rounded-window overflow-hidden'>
       <Titlebar />
-      <div className='w-full h-full bg-neutral-900 text-text rounded-b-window'>
+      <div className='w-full h-full text-text rounded-b-window' id='background'>
         <Component {...pageProps} />
       </div>
     </div>
