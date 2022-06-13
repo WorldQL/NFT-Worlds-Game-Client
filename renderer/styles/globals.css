@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 :root {
+  --pad: 5rem;
   --card-width: 260px;
 }
