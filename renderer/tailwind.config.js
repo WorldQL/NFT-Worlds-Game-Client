@@ -34,6 +34,11 @@ module.exports = {
         '.no-drag': {
           '-webkit-app-region': 'no-drag',
         },
+        '.bgblur': {
+          'background-color': 'rgba(255, 255, 255, 0.1)',
+          'backdrop-filter': 'blur(10px)',
+          'box-shadow': '0 6px 6px rgb(0 0 0 / 30%)',
+        },
       })
     }),
   ],

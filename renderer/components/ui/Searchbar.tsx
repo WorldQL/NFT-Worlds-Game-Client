@@ -17,7 +17,7 @@ export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
 
   return (
     <input
-      className='rounded-full bg-neutral-600 px-3 py-4 w-[400px]'
+      className='rounded-full bgblur backdrop-filter-[50px] px-3 py-4 w-[400px]'
       type='text'
       value={value}
       placeholder={placeholder}
