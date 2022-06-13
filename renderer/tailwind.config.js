@@ -18,6 +18,10 @@ module.exports = {
           green: '#03ff21',
           cyan: '#03ffda',
         },
+        bg: {
+          top: '#484848',
+          bottom: '#232323',
+        },
       },
       borderRadius: {
         window: '6px',
