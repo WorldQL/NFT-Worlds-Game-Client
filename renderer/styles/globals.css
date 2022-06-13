@@ -12,6 +12,7 @@
   --card-width: 275px;
 
   --blur-amount: 10px;
+  --blur-amount-fix: calc(var(--blur-amount) + 0.01px);
 }
 
 #background {
