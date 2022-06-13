@@ -34,7 +34,7 @@ const createWindow = async () => {
     title: `NFT Worlds v${VERSION}`,
 
     width: 1600,
-    height: 900,
+    height: 1000,
     resizable: false,
 
     frame: false,
