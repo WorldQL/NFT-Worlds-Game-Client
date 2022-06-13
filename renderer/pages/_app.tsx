@@ -16,9 +16,12 @@ const App = ({ Component, pageProps }: AppProps) => {
   useKonami(handleKonami)
 
   return (
-    <div className='w-screen h-screen flex flex-col rounded-window overflow-hidden'>
+    <div
+      className='w-screen h-screen flex flex-col rounded-window overflow-hidden'
+      id='background'
+    >
       <Titlebar />
-      <div className='w-full h-full text-text rounded-b-window' id='background'>
+      <div className='w-full h-full text-text rounded-b-window'>
         <Component {...pageProps} />
       </div>
     </div>
