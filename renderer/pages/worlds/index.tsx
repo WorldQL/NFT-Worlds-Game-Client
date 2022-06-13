@@ -1,6 +1,7 @@
 import { type NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { Layout } from '~/components/layout/Layout'
+import { TitleHeader } from '~/components/layout/TitleHeader'
 import { Dropdown } from '~/components/ui/Dropdown'
 import { Searchbar } from '~/components/ui/Searchbar'
 import { WorldGrid } from '~/components/worlds/WorldGrid'
@@ -14,7 +15,8 @@ const Worlds: NextPage = () => {
 
   return (
     <Layout>
-      <h1 className='text-center text-[4.8rem] font-bold my-6'>Worlds</h1>
+      <TitleHeader>Worlds</TitleHeader>
+
       <div className='mb-8 grid grid-cols-[repeat(5,var(--card-width))] justify-between'>
         <Dropdown
           value=''
