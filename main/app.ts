@@ -6,10 +6,10 @@ import Store from 'electron-store'
 import { autoUpdater } from 'electron-updater'
 import { join as joinPath } from 'node:path'
 import process from 'node:process'
+import { initHandlers } from './ipc/index'
 import { authenticate } from './lib/auth'
 import { APP_ROOT, IS_DEV, VERSION } from './lib/env'
 // TODO
-// import { initHandlers } from './ipc/handler'
 // import { getSecureKey } from './lib/encryption'
 // Import { exists } from './lib/http'
 
@@ -92,10 +92,9 @@ void app.whenReady().then(async () => {
   // global.__SECURE_STORE_KEY = getSecureKey()
 
   const { win, load } = await createWindow()
-  // TODO
   const { profile, nftwToken } = await authenticate()
-  // TODO
-  // initHandlers(win.webContents)
+
+  initHandlers(win.webContents, { profile, nftwToken })
   await load()
 
   app.on('window-all-closed', () => app.quit())
