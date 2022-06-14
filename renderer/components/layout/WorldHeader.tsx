@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import { type World } from '~/lib/worlds'
+import { type World } from '~/lib/data/worlds'
 
 interface Props {
   world: World
