@@ -47,6 +47,9 @@ module.exports = {
           'backdrop-filter': 'blur(var(--blur-amount))',
           'box-shadow': '0 6px 6px rgb(0 0 0 / 30%)',
         },
+        '.pixelated': {
+          'image-rendering': 'pixelated',
+        },
       })
     }),
   ],

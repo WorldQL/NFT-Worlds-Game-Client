@@ -3,5 +3,5 @@ import { type Data } from './index'
 
 export const getProfile = async ({ profile, nftwToken }: Data) => {
   const wallets = await getWallets(nftwToken)
-  return { profile, wallets }
+  return { user: profile, wallets }
 }
