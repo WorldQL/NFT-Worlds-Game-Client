@@ -1,11 +1,11 @@
 import { type NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Layout } from '~/components/layout/Layout'
 import { TitleHeader } from '~/components/layout/TitleHeader'
 import { type DisplayHandler, Dropdown } from '~/components/ui/Dropdown'
 import { Searchbar } from '~/components/ui/Searchbar'
 import { WorldGrid } from '~/components/worlds/WorldGrid'
-import { fetchWorlds, type World } from '~/lib/worlds'
+import { useWorlds } from '~/lib/hooks/useWorlds'
 
 // TODO: Hook up to global state
 const worldFilter = {
@@ -26,11 +26,7 @@ const displaySort: DisplayHandler<typeof worldSort> = (value, options) =>
   `Sort: ${options[value]}`
 
 const Worlds: NextPage = () => {
-  // TODO: Make global
-  const [worlds, setWorlds] = useState<readonly World[] | undefined>(undefined)
-  useEffect(() => {
-    void fetchWorlds().then(worlds => setWorlds(worlds))
-  }, [])
+  const { worlds } = useWorlds()
 
   // TODO: Hook up to global state
   const [filter, setFilter] = useState<keyof typeof worldFilter>('all')

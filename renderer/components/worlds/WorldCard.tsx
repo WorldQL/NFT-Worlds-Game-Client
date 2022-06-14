@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { type FC, useCallback } from 'react'
-import { type World } from '~/lib/worlds'
+import { type World } from '~/lib/data/worlds'
 
 interface Props {
   world: World
