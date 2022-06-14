@@ -38,14 +38,21 @@ export const secureKey: (name: string) => string | undefined = name => {
 
 export function createStore<
   T extends Record<string, any> = Record<string, unknown>
->(name: string, secure = false): Store<T> {
+>(name: string, secure = false): () => Store<T> {
   const keyname = `${name}.json`
   const key = secure ? secureKey(keyname) : undefined
 
-  return new Store<T>({
-    name,
-    cwd: APP_ROOT_ABSOLUTE,
-    fileExtension: key ? 'json.enc' : 'json',
-    encryptionKey: key,
-  })
+  let store: Store<T> | undefined
+  return () => {
+    if (store === undefined) {
+      store = new Store<T>({
+        name,
+        cwd: APP_ROOT_ABSOLUTE,
+        fileExtension: key ? 'json.enc' : 'json',
+        encryptionKey: key,
+      })
+    }
+
+    return store
+  }
 }

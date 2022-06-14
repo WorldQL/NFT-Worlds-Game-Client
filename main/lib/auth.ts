@@ -8,14 +8,15 @@ import {
 import { authorize } from './nftWorldsAPI'
 import { createStore } from './store'
 
+export const userStore = createStore<Store>('user', true)
 interface Store {
   profile: Profile | undefined
 }
 
 export const authenticate = async () => {
-  const store = createStore<Store>('user', true)
-
+  const store = userStore()
   const savedProfile = store.get('profile', undefined)
+
   const refreshProfile: () => Promise<{
     token: string
     profile: Profile
