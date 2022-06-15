@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg-darken: rgb(0 0 0 / 40%);
+  --bg-darken: rgb(0 0 0 / 50%);
   --bg-gradient: linear-gradient();
   --bg-image: url('~/assets/images/background.png');
   --background: var(--bg-darken) var(--bg-image);
@@ -39,5 +39,6 @@
     linear-gradient(rgb(0 0 0 / 40%), transparent 10%),
     linear-gradient(transparent 90%, rgb(0 0 0 / 75%));
 
+  backdrop-filter: blur(1px);
   z-index: -1;
 }
