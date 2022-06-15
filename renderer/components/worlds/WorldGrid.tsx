@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const WorldGrid: FC<Props> = ({ worlds }) => (
-  <div className='w-full grid gap-y-6 grid-cols-[repeat(5,var(--card-width))] justify-between'>
+  <div className='w-full flex-1 overflow-y-scroll grid grid-cols-[repeat(5,var(--card-width))] justify-between scrollbar-none'>
     {worlds.map(world => (
       <WorldCard key={world.worldId} world={world} />
     ))}

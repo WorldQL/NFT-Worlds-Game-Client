@@ -21,7 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       id='background'
     >
       <Titlebar />
-      <div className='w-full h-full text-text rounded-b-window'>
+      <div className='w-full flex-1 overflow-y-clip text-text rounded-b-window'>
         <Component {...pageProps} />
       </div>
     </div>
