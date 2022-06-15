@@ -15,7 +15,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
 
   return (
     <div
-      className='mb-6 bg-gradient-to-b from-bg-top to-bg-bottom rounded-2xl shadow-xl flex flex-col w-[var(--card-width)] cursor-pointer transition-transform duration-75 hover:-translate-y-1'
+      className='mb-6 bg-gradient-to-b from-bg-top to-bg-bottom rounded-2xl shadow-xl flex flex-col w-[var(--card-width)] cursor-pointer transition-transform duration-75'
       onClick={handleClick}
     >
       <img
