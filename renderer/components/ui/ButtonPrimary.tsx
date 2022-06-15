@@ -3,11 +3,11 @@ import { Button, type ButtonProps } from './Button'
 
 export const ButtonPrimary: FC<PropsWithChildren<ButtonProps>> = ({
   children,
-  onClick,
+  ...props
 }) => (
   <Button
-    className='text-text-action bg-gradient-to-r hover:bg-gradient-to-l from-cta-green to-cta-cyan'
-    onClick={onClick}
+    className='text-text-action bg-gradient-to-r enabled:hover:bg-gradient-to-l from-cta-green to-cta-cyan disabled:cursor-not-allowed'
+    {...props}
   >
     {children}
   </Button>

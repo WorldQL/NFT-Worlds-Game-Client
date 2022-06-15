@@ -2,14 +2,17 @@ import clsx from 'clsx'
 import { type FC, type PropsWithChildren, useCallback } from 'react'
 
 interface Props {
-  className?: string
+  disabled?: boolean
   onClick: () => void
+
+  className?: string
 }
 
 export const Button: FC<PropsWithChildren<Props>> = ({
   children,
-  className,
+  disabled,
   onClick,
+  className,
 }) => {
   const handleClick = useCallback(() => {
     if (typeof onClick === 'function') onClick()
@@ -22,6 +25,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
         className
       )}
       type='button'
+      disabled={disabled}
       onClick={handleClick}
     >
       {children}
