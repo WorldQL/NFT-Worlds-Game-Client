@@ -18,6 +18,11 @@ module.exports = {
           green: '#03ff21',
           cyan: '#03ffda',
         },
+        secondary: {
+          DEFAULT: 'rgb(4 4 4 / 75%)',
+          hover: 'rgb(4 4 4 / 60%)',
+          border: 'rgb(230 230 230 / 20%)',
+        },
         bg: {
           top: '#484848',
           bottom: '#232323',

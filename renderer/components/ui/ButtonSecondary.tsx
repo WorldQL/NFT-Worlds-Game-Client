@@ -1,21 +1,14 @@
-import { type FC, type PropsWithChildren, useCallback } from 'react'
+import { type FC, type PropsWithChildren } from 'react'
+import { Button, type ButtonProps } from './Button'
 
-interface Props {
-  onClick: () => void
-}
-
-export const ButtonSecondary: FC<PropsWithChildren<Props>> = ({
+export const ButtonSecondary: FC<PropsWithChildren<ButtonProps>> = ({
   children,
   onClick,
-}) => {
-  const handleClick = useCallback(() => {
-    if (typeof onClick === 'function') onClick()
-  }, [onClick])
-
-  // TODO: Styling
-  return (
-    <button type='button' onClick={handleClick}>
-      {children}
-    </button>
-  )
-}
+}) => (
+  <Button
+    className='transition-colors bg-secondary hover:bg-secondary-hover shadow-[inset_0_0_0_2px_theme(colors.secondary.border)] backdrop-blur-[var(--blur-amount)]'
+    onClick={onClick}
+  >
+    {children}
+  </Button>
+)

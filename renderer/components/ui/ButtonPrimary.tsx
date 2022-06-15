@@ -1,21 +1,14 @@
-import { type FC, type PropsWithChildren, useCallback } from 'react'
+import { type FC, type PropsWithChildren } from 'react'
+import { Button, type ButtonProps } from './Button'
 
-interface Props {
-  onClick: () => void
-}
-
-export const ButtonPrimary: FC<PropsWithChildren<Props>> = ({
+export const ButtonPrimary: FC<PropsWithChildren<ButtonProps>> = ({
   children,
   onClick,
-}) => {
-  const handleClick = useCallback(() => {
-    if (typeof onClick === 'function') onClick()
-  }, [onClick])
-
-  // TODO: Styling
-  return (
-    <button type='button' onClick={handleClick}>
-      {children}
-    </button>
-  )
-}
+}) => (
+  <Button
+    className='text-text-action bg-gradient-to-r hover:bg-gradient-to-l from-cta-green to-cta-cyan'
+    onClick={onClick}
+  >
+    {children}
+  </Button>
+)
