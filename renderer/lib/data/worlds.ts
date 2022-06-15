@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export interface World {
+interface RawWorld {
   worldId: number
   name: string
   description: string
@@ -28,10 +28,45 @@ export interface Connection {
   port: string | number
   consolePort: number
 }
-export const fetchWorlds = async () => {
-  const { data } = await axios.get<readonly World[]>(
+
+export interface World {
+  id: number
+  name: string
+  description: string
+
+  branding: Readonly<Branding>
+  connection: Readonly<Connection>
+
+  online: boolean
+  players: number
+
+  lastUpdated: Date
+}
+
+export const fetchWorlds: () => Promise<
+  ReadonlyArray<Readonly<World>>
+> = async () => {
+  const { data } = await axios.get<readonly RawWorld[]>(
     'https://status-api.nftworlds.com/latest'
   )
 
-  return data
+  const worlds = data.map(raw => {
+    const world: World = {
+      id: raw.worldId,
+      name: raw.name,
+      description: raw.description,
+
+      branding: Object.freeze(raw.branding),
+      connection: Object.freeze(raw.connection),
+
+      online: raw.javaOnline,
+      players: raw.playersOnline,
+
+      lastUpdated: new Date(raw.lastUpdated * 1000),
+    }
+
+    return Object.freeze(world)
+  })
+
+  return worlds
 }

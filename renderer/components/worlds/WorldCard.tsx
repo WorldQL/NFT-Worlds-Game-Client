@@ -10,8 +10,8 @@ interface Props {
 export const WorldCard: FC<Props> = ({ world }) => {
   const { push } = useRouter()
   const handleClick = useCallback(() => {
-    void push(`/worlds/${world.worldId}`)
-  }, [world.worldId, push])
+    void push(`/worlds/${world.id}`)
+  }, [world.id, push])
 
   return (
     <div
@@ -33,7 +33,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
           <h2 className='font-bold text-lg'>{world.name}</h2>
 
           <span className='font-semibold text-xs text-text-sub'>
-            #{world.worldId} WORLD
+            #{world.id} WORLD
           </span>
 
           <p className='text-xs text-text-sub line-clamp-2'>

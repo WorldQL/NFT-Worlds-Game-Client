@@ -25,7 +25,7 @@ export const WorldHeader: FC<Props> = ({ world }) => {
           style={{ backgroundImage: `url(${world.branding.icon})` }}
         />
 
-        <span className='text-sm'>#{world.worldId} WORLD</span>
+        <span className='text-sm'>#{world.id} WORLD</span>
       </div>
 
       <h1 className='text-[4.8rem] font-bold leading-none mt-2'>
@@ -36,10 +36,7 @@ export const WorldHeader: FC<Props> = ({ world }) => {
 
       <div className='flex gap-3 mt-6'>
         <div className='flex flex-col gap-3 items-center'>
-          <ButtonPrimary
-            disabled={!world.javaOnline}
-            onClick={handleClickPrimary}
-          >
+          <ButtonPrimary disabled={!world.online} onClick={handleClickPrimary}>
             Play Now
           </ButtonPrimary>
 

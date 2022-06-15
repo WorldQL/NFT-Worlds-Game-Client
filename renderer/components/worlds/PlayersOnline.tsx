@@ -16,8 +16,6 @@ export const PlayersOnline: FC<Props> = ({
   center,
   className,
 }) => {
-  const online = useMemo<boolean>(() => world.javaOnline, [world])
-
   return (
     <div
       className={clsx(
@@ -26,11 +24,11 @@ export const PlayersOnline: FC<Props> = ({
         className
       )}
     >
-      <OnlineIndicator online={online} glow={glow} />
+      <OnlineIndicator online={world.online} glow={glow} />
 
       <span className='text-xs font-semibold leading-none'>
-        {online
-          ? `${world.playersOnline.toLocaleString()} PLAYERS ONLINE`
+        {world.online
+          ? `${world.players.toLocaleString()} PLAYERS ONLINE`
           : 'OFFLINE'}
       </span>
     </div>

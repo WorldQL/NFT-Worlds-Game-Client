@@ -9,9 +9,12 @@ const World: NextPage = () => {
   const { worlds } = useWorlds()
 
   const worldId = Number.parseInt(query.world! as string, 10)
-  const world = worlds?.find(x => x.worldId === worldId)
+  const world = worlds?.find(x => x.id === worldId)
 
-  if (!world) return null
+  if (!world) {
+    if (typeof window === 'undefined') return null
+    throw new Error('world not found')
+  }
 
   return (
     <Layout>
