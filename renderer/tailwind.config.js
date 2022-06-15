@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        window: '6px',
+        window: '10px',
       },
     },
   },
