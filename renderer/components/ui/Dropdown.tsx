@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { type FC, useCallback, useMemo, useState } from 'react'
+import { Arrow } from '~/components/svg/Arrow'
 
 export type DisplayHandler<T extends Record<string, string>> = (
   value: keyof T,
@@ -46,7 +47,7 @@ export const Dropdown = <T extends Record<string, string>>({
     <div className='w-[var(--card-width)] relative'>
       <div
         className={clsx(
-          'w-full bgblur px-6 py-4 cursor-pointer',
+          'w-full bgblur px-6 py-4 cursor-pointer flex items-center',
           !open && 'rounded-full',
           open &&
             'rounded-t-[28px] rounded-b-none shadow-none !backdrop-blur-[var(--blur-amount-fix)]'
@@ -54,7 +55,8 @@ export const Dropdown = <T extends Record<string, string>>({
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        {selected}
+        <span className='grow'>{selected}</span>
+        <Arrow />
       </div>
 
       {open && (
