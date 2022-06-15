@@ -1,11 +1,5 @@
 import clsx from 'clsx'
-import {
-  type ChangeEventHandler,
-  type FC,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react'
+import { type FC, useCallback, useMemo, useState } from 'react'
 
 export type DisplayHandler<T extends Record<string, string>> = (
   value: keyof T,

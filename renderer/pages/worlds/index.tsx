@@ -1,5 +1,5 @@
 import { type NextPage } from 'next'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Layout } from '~/components/layout/Layout'
 import { TitleHeader } from '~/components/layout/TitleHeader'
 import { type DisplayHandler, Dropdown } from '~/components/ui/Dropdown'

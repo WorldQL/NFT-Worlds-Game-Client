@@ -1,5 +1,5 @@
-import type { AppProps } from 'next/app'
-import React, { useCallback } from 'react'
+import { type AppProps } from 'next/app'
+import { useCallback } from 'react'
 import { useKonami } from 'react-konami-code'
 import { Titlebar } from '~/components/layout/Titlebar'
 
