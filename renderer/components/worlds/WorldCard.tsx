@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { type FC, useCallback } from 'react'
+import { PlayersOnline } from '~/components/worlds/PlayersOnline'
 import { type World } from '~/lib/data/worlds'
 
 interface Props {
@@ -39,9 +40,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
             {world.description}
           </p>
 
-          <span className='font-semibold text-xs text-text-sub'>
-            {world.playersOnline} PLAYERS ONLINE
-          </span>
+          <PlayersOnline center className='text-text-sub mt-2' world={world} />
         </div>
       </div>
     </div>
