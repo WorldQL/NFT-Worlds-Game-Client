@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 import { type World } from '~/lib/data/worlds'
 
 interface Props {
@@ -15,21 +15,27 @@ export const PlayersOnline: FC<Props> = ({
   glow,
   center,
   className,
-}) => (
-  <div
-    className={clsx(
-      'flex items-center gap-1',
-      center && 'justify-center',
-      className
-    )}
-  >
-    <OnlineIndicator online={world.javaOnline} glow={glow} />
+}) => {
+  const online = useMemo<boolean>(() => world.javaOnline, [world])
 
-    <span className='text-xs font-semibold'>
-      {world.playersOnline} PLAYERS ONLINE
-    </span>
-  </div>
-)
+  return (
+    <div
+      className={clsx(
+        'flex items-center gap-[5px]',
+        center && 'justify-center',
+        className
+      )}
+    >
+      <OnlineIndicator online={online} glow={glow} />
+
+      <span className='text-xs font-semibold leading-none'>
+        {online
+          ? `${world.playersOnline.toLocaleString()} PLAYERS ONLINE`
+          : 'OFFLINE'}
+      </span>
+    </div>
+  )
+}
 
 interface IndicatorProps {
   online: boolean

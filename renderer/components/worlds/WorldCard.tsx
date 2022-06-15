@@ -40,7 +40,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
             {world.description}
           </p>
 
-          <PlayersOnline center className='text-text-sub mt-2' world={world} />
+          <PlayersOnline center className='text-text-sub mt-3' world={world} />
         </div>
       </div>
     </div>
