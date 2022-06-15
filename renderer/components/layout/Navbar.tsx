@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { type FC } from 'react'
-import Arrow from '~/assets/svg/arrow.svg'
 import Logo from '~/assets/svg/logo.svg'
-import WRLDIcon from '~/assets/svg/wrld_icon.svg'
+import { Arrow } from '~/components/svg/Arrow'
+import { WRLDIcon } from '~/components/svg/WRLDIcon'
 import { useProfile } from '~/lib/hooks/useProfile'
 import { PlayerHead } from '../PlayerHead'
 
@@ -27,12 +27,12 @@ export const Navbar: FC = () => {
           <div>{profile?.user.name}</div>
 
           <div className='flex'>
-            <img src={WRLDIcon.src} className='w-5 mr-2' />
+            <WRLDIcon className='w-5 mr-2' />
             <span>{profile?.wallets.wrldBalance}</span>
           </div>
         </div>
 
-        <img src={Arrow.src} />
+        <Arrow />
       </div>
     </nav>
   )
