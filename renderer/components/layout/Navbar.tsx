@@ -22,13 +22,16 @@ export const Navbar: FC = () => {
       </div>
 
       <div className='h-full w-[var(--card-width)] px-5 rounded-r-full bg-blur-1 flex items-center gap-4'>
-        <PlayerHead profile={profile} className='w-8 rounded-full pixelated' />
-        <div className='flex flex-col flex-grow text-sm'>
-          <div>{profile?.user.name}</div>
+        <div className='flex grow h-10 gap-4'>
+          <PlayerHead profile={profile} className='rounded-full pixelated' />
 
-          <div className='flex'>
-            <WRLDIcon className='w-5 mr-2' />
-            <span>{profile?.wallets.wrldBalance}</span>
+          <div className='flex flex-col flex-grow text-sm'>
+            <div>{profile?.user.name}</div>
+
+            <div className='flex items-center'>
+              <WRLDIcon className='h-[11px] w-5 mr-[6px]' />
+              <span>{profile?.wallets.wrldBalance}</span>
+            </div>
           </div>
         </div>
 
