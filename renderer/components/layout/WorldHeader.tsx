@@ -36,7 +36,12 @@ export const WorldHeader: FC<Props> = ({ world }) => {
 
       <div className='flex gap-3 mt-6'>
         <div className='flex flex-col gap-3 items-center'>
-          <ButtonPrimary onClick={handleClickPrimary}>Play Now</ButtonPrimary>
+          <ButtonPrimary
+            disabled={!world.javaOnline}
+            onClick={handleClickPrimary}
+          >
+            Play Now
+          </ButtonPrimary>
 
           <PlayersOnline world={world} />
         </div>
