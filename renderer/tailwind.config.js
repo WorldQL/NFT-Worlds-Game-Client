@@ -1,3 +1,4 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
@@ -8,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Maison Neue', ...fontFamily.sans],
+        extended: ['Maison Neue Extended', ...fontFamily.sans],
+        mono: ['Maison Neue Mono', ...fontFamily.mono],
+      },
       colors: {
         text: {
           DEFAULT: '#ffffff',
