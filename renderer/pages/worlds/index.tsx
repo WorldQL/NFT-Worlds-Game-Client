@@ -31,6 +31,7 @@ const Worlds: NextPage = () => {
   // TODO: Hook up to global state
   const [filter, setFilter] = useState<keyof typeof worldFilter>('all')
   const [sort, setSort] = useState<keyof typeof worldSort>('recentUpdate')
+  const [search, setSearch] = useState<string>('')
 
   return (
     <Layout>
@@ -48,11 +49,9 @@ const Worlds: NextPage = () => {
 
         <div className='col-span-3 flex justify-end'>
           <Searchbar
-            value=''
+            value={search}
             placeholder='Search Worlds'
-            onChange={() => {
-              void 0
-            }}
+            onChange={setSearch}
           />
         </div>
       </div>

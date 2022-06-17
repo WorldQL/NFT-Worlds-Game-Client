@@ -25,7 +25,7 @@ export const WorldHeader: FC<Props> = ({ world }) => {
           style={{ backgroundImage: `url(${world.branding.icon})` }}
         />
 
-        <span className='text-sm'>#{world.id} WORLD</span>
+        <span className='text-sm font-semibold'>#{world.id} WORLD</span>
       </div>
 
       <h1 className='text-[4.8rem] font-bold leading-none mt-2'>

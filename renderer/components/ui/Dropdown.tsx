@@ -44,7 +44,7 @@ export const Dropdown = <T extends Record<string, string>>({
 
   const selected = useMemo<string>(() => transform(value), [value, transform])
   return (
-    <div className='w-[var(--card-width)] relative'>
+    <div className='w-[var(--card-width)] relative font-semibold'>
       <div
         className={clsx(
           'w-full bgblur px-6 py-4 cursor-pointer flex items-center',

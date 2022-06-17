@@ -29,7 +29,7 @@ export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
       <input
         ref={ref}
         type='text'
-        className='px-6 py-4 rounded-l-full grow bg-transparent outline-none'
+        className='px-6 py-4 rounded-l-full grow bg-transparent outline-none font-medium'
         value={value}
         placeholder={placeholder}
         onChange={handleChange}

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { type FC } from 'react'
+import { type FC, useMemo } from 'react'
 import Logo from '~/assets/svg/logo.svg'
 import { Arrow } from '~/components/svg/Arrow'
 import { WRLDIcon } from '~/components/svg/WRLDIcon'
@@ -8,6 +8,13 @@ import { PlayerHead } from '../PlayerHead'
 
 export const Navbar: FC = () => {
   const { profile } = useProfile()
+  const balance = useMemo<string | undefined>(
+    () =>
+      profile?.wallets.wrldBalance.toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      }),
+    [profile?.wallets]
+  )
 
   return (
     <nav className='min-h-[4rem] mt-8 flex items-center bgblur rounded-full text-xl'>
@@ -15,7 +22,7 @@ export const Navbar: FC = () => {
         <img className='h-9' src={Logo.src} />
       </div>
 
-      <div className='flex-grow flex gap-10 justify-center'>
+      <div className='flex-grow flex gap-10 justify-center font-semibold'>
         <Link href='/'>Home</Link>
         <Link href='/worlds'>Worlds</Link>
         <Link href='/settings'>Settings</Link>
@@ -26,11 +33,11 @@ export const Navbar: FC = () => {
           <PlayerHead profile={profile} className='rounded-full pixelated' />
 
           <div className='flex flex-col flex-grow text-sm'>
-            <div>{profile?.user.name}</div>
+            <div className='font-semibold'>{profile?.user.name}</div>
 
             <div className='flex items-center'>
               <WRLDIcon className='h-[11px] w-5 mr-[6px]' />
-              <span>{profile?.wallets.wrldBalance}</span>
+              <span>{balance}</span>
             </div>
           </div>
         </div>
