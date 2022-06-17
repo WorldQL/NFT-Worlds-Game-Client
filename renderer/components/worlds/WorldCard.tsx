@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { type FC, useCallback } from 'react'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
+import { WorldIcon } from '~/components/worlds/WorldIcon'
 import { type World } from '~/lib/data/worlds'
 
 interface Props {
@@ -24,10 +25,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
       />
 
       <div className='rounded-b-2xl p-3 pt-0 pb-4 text-center'>
-        <div
-          className='aspect-square w-[4.5rem] h-auto rounded-full bg-cover border-2 shadow-[inset_0_0_8px_black] mt-[-2.25rem] mx-auto mb-2'
-          style={{ backgroundImage: `url(${world.branding.icon})` }}
-        />
+        <WorldIcon world={world} className='mt-[-2.25rem] mx-auto mb-2' />
 
         <div>
           <h2 className='font-bold text-lg'>{world.name}</h2>

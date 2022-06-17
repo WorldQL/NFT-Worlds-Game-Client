@@ -2,6 +2,7 @@ import { type FC, useCallback } from 'react'
 import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 import { ButtonSecondary } from '~/components/ui/ButtonSecondary'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
+import { WorldIcon } from '~/components/worlds/WorldIcon'
 import { type World } from '~/lib/data/worlds'
 
 interface Props {
@@ -20,10 +21,7 @@ export const WorldHeader: FC<Props> = ({ world }) => {
   return (
     <div className='flex flex-col mx-[var(--card-width)] mt-8'>
       <div className='flex items-center gap-5'>
-        <div
-          className='aspect-square w-[4.5rem] h-auto rounded-full bg-cover border-2 shadow-[inset_0_0_8px_black]'
-          style={{ backgroundImage: `url(${world.branding.icon})` }}
-        />
+        <WorldIcon world={world} />
 
         <span className='text-sm font-semibold'>#{world.id} WORLD</span>
       </div>
