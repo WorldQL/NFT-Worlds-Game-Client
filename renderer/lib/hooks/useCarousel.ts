@@ -65,8 +65,7 @@ export const useCarousel = (count: number, delay: number) => {
           const index = action.value % count
           const transition: Transition = {
             start: false,
-            // TODO: Calculate direction
-            direction: 'left',
+            direction: previousState.index < action.value ? 'left' : 'right',
             index: previousState.index,
           }
 
