@@ -1,4 +1,5 @@
-import { type FC, useCallback } from 'react'
+import clsx from 'clsx'
+import { type CSSProperties, type FC, useCallback } from 'react'
 import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 import { ButtonSecondary } from '~/components/ui/ButtonSecondary'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
@@ -7,9 +8,18 @@ import { type World } from '~/lib/data/worlds'
 
 interface Props {
   world: World
+  secondary?: 'details'
+
+  className?: string
+  style?: CSSProperties
 }
 
-export const WorldHeader: FC<Props> = ({ world }) => {
+export const WorldHeader: FC<Props> = ({
+  world,
+  secondary,
+  className,
+  style,
+}) => {
   const handleClickPrimary = useCallback(() => {
     // TODO
   }, [])
@@ -19,7 +29,10 @@ export const WorldHeader: FC<Props> = ({ world }) => {
   }, [])
 
   return (
-    <div className='flex flex-col mx-[var(--card-width)] mt-8'>
+    <div
+      className={clsx('flex flex-col mx-[var(--card-width)] mt-8', className)}
+      style={style}
+    >
       <div className='flex items-center gap-5'>
         <WorldIcon world={world} />
 
