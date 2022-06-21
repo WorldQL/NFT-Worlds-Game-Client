@@ -13,6 +13,11 @@ export const WorldHeaderCarousel: FC<Props> = ({ count = 3 }) => {
   const worlds = useMemo(() => allWorlds?.slice(0, count), [allWorlds, count])
   const { index, transition, dispatch } = useCarousel(count, 251)
 
+  const indicies = useMemo(
+    () => Array.from({ length: count }, (_, i) => i),
+    [count]
+  )
+
   if (worlds === undefined) return null
 
   return (
@@ -58,13 +63,18 @@ export const WorldHeaderCarousel: FC<Props> = ({ count = 3 }) => {
         />
       )}
 
-      <button type='button' onClick={() => dispatch({ action: 'increment' })}>
-        Increment
-      </button>
-
-      <button type='button' onClick={() => dispatch({ action: 'decrement' })}>
-        Decrement
-      </button>
+      <div className='mx-[var(--card-width)] mt-7 flex gap-5'>
+        {indicies.map(idx => (
+          <div
+            key={idx}
+            className={clsx(
+              'w-3 h-auto aspect-square border rounded-full cursor-pointer transition-colors duration-[var(--duration)]',
+              index === idx && 'bg-white'
+            )}
+            onClick={() => dispatch({ action: 'setIdx', value: idx })}
+          />
+        ))}
+      </div>
     </div>
   )
 }

@@ -58,6 +58,10 @@ export const useCarousel = (count: number, delay: number) => {
             return previousState
           }
 
+          if (previousState.index === action.value) {
+            return previousState
+          }
+
           const index = action.value % count
           const transition: Transition = {
             start: false,
