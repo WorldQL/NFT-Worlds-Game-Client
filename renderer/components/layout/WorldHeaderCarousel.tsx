@@ -11,27 +11,52 @@ interface Props {
 export const WorldHeaderCarousel: FC<Props> = ({ count = 3 }) => {
   const { worlds: allWorlds } = useWorlds()
   const worlds = useMemo(() => allWorlds?.slice(0, count), [allWorlds, count])
-  const { index, transition, dispatch } = useCarousel(count, 1000)
+  const { index, transition, dispatch } = useCarousel(count, 251)
 
   if (worlds === undefined) return null
 
   return (
-    <div className='relative'>
+    <div className='[--translate:20px] [--duration:250ms] relative'>
       <WorldHeader
         world={worlds[index]}
         secondary='details'
-        className={clsx('transition-transform')}
+        className={clsx('z-50', transition && 'opacity-0')}
       />
 
       {transition && (
         <WorldHeader
           world={worlds[index]}
           secondary='details'
-          className={clsx('transition-transform absolute top-0')}
+          className={clsx(
+            '-z-10 pointer-events-none transition-all duration-[var(--duration)] absolute top-0',
+            !transition.start && 'opacity-0',
+            transition.start && 'opacity-100',
+            transition.direction === 'left' &&
+              !transition.start &&
+              'translate-x-[var(--translate)]',
+            transition.direction === 'right' &&
+              !transition.start &&
+              '-translate-x-[var(--translate)]'
+          )}
         />
       )}
 
-      <pre>{JSON.stringify({ transition })}</pre>
+      {transition && (
+        <WorldHeader
+          world={worlds[transition.index]}
+          secondary='details'
+          className={clsx(
+            '-z-20 pointer-events-none transition-all duration-[var(--duration)] absolute top-0',
+            transition.start && 'opacity-0',
+            transition.direction === 'left' &&
+              transition.start &&
+              '-translate-x-[var(--translate)]',
+            transition.direction === 'right' &&
+              transition.start &&
+              'translate-x-[var(--translate)]'
+          )}
+        />
+      )}
 
       <button type='button' onClick={() => dispatch({ action: 'increment' })}>
         Increment

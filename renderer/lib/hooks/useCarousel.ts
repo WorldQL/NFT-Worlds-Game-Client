@@ -1,4 +1,5 @@
 import { type Reducer, useEffect, useReducer } from 'react'
+import { flushSync } from 'react-dom'
 
 interface State {
   index: number
@@ -6,6 +7,7 @@ interface State {
 }
 
 interface Transition {
+  start: boolean
   direction: 'left' | 'right'
   index: number
 }
@@ -14,6 +16,7 @@ type Action =
   | { action: 'increment' }
   | { action: 'decrement' }
   | { action: 'setIdx'; value: number }
+  | { action: 'start' }
   | { action: 'end' }
 
 export const useCarousel = (count: number, delay: number) => {
@@ -27,7 +30,8 @@ export const useCarousel = (count: number, delay: number) => {
 
           const index = (previousState.index + 1) % count
           const transition: Transition = {
-            direction: 'right',
+            start: false,
+            direction: 'left',
             index: previousState.index,
           }
 
@@ -41,7 +45,8 @@ export const useCarousel = (count: number, delay: number) => {
 
           const index = (previousState.index + count - 1) % count
           const transition: Transition = {
-            direction: 'left',
+            start: false,
+            direction: 'right',
             index: previousState.index,
           }
 
@@ -55,12 +60,24 @@ export const useCarousel = (count: number, delay: number) => {
 
           const index = action.value % count
           const transition: Transition = {
+            start: false,
             // TODO: Calculate direction
             direction: 'left',
             index: previousState.index,
           }
 
           return { ...previousState, index, transition }
+        }
+
+        case 'start': {
+          if (previousState.transition === undefined) {
+            return previousState
+          }
+
+          return {
+            ...previousState,
+            transition: { ...previousState.transition, start: true },
+          }
         }
 
         case 'end': {
@@ -76,10 +93,25 @@ export const useCarousel = (count: number, delay: number) => {
 
   useEffect(() => {
     if (state.transition === undefined) return
-    const timeout = setTimeout(() => dispatch({ action: 'end' }), 1000)
+    if (state.transition.start === true) return
+
+    setImmediate(() =>
+      flushSync(() => {
+        dispatch({ action: 'start' })
+      })
+    )
+  }, [state.transition])
+
+  useEffect(() => {
+    if (state.transition === undefined) return
+    if (state.transition.start === false) return
+
+    const timeout = setTimeout(() => {
+      dispatch({ action: 'end' })
+    }, delay)
 
     return () => clearTimeout(timeout)
-  }, [state.transition])
+  }, [state.transition, delay])
 
   return { ...state, dispatch }
 }
