@@ -8,7 +8,7 @@ interface Props {
   style?: CSSProperties
 }
 
-export const Side: FC<PropsWithChildren<Props>> = ({
+const Side: FC<PropsWithChildren<Props>> = ({
   side,
   className,
   style,
@@ -25,4 +25,24 @@ export const Side: FC<PropsWithChildren<Props>> = ({
   >
     {children}
   </div>
+)
+
+type SideProps = Omit<Props, 'side'>
+
+export const Left: FC<PropsWithChildren<SideProps>> = ({
+  children,
+  ...props
+}) => (
+  <Side side='left' {...props}>
+    {children}
+  </Side>
+)
+
+export const Right: FC<PropsWithChildren<SideProps>> = ({
+  children,
+  ...props
+}) => (
+  <Side side='right' {...props}>
+    {children}
+  </Side>
 )
