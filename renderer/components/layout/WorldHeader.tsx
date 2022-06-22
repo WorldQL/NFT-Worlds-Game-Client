@@ -1,10 +1,11 @@
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import { type CSSProperties, type FC, useCallback } from 'react'
 import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
-import { ButtonSecondary } from '~/components/ui/ButtonSecondary'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
 import { WorldIcon } from '~/components/worlds/WorldIcon'
 import { type World } from '~/lib/data/worlds'
+import { ButtonText } from '../ui/ButtonText'
 
 interface Props {
   world: World
@@ -20,13 +21,17 @@ export const WorldHeader: FC<Props> = ({
   className,
   style,
 }) => {
+  const { push } = useRouter()
+
   const handleClickPrimary = useCallback(() => {
     // TODO
   }, [])
 
   const handleClickSecondary = useCallback(() => {
-    // TODO
-  }, [])
+    if (secondary === 'details') {
+      void push(`/worlds/${world.id}`)
+    }
+  }, [secondary, world.id, push])
 
   return (
     <div
@@ -54,9 +59,9 @@ export const WorldHeader: FC<Props> = ({
           <PlayersOnline world={world} />
         </div>
 
-        <ButtonSecondary onClick={handleClickSecondary}>
-          Secondary Button
-        </ButtonSecondary>
+        {secondary === 'details' ? (
+          <ButtonText onClick={handleClickSecondary}>Details</ButtonText>
+        ) : null}
       </div>
     </div>
   )
