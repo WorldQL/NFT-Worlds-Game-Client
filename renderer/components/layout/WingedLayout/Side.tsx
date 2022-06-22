@@ -16,7 +16,7 @@ const Side: FC<PropsWithChildren<Props>> = ({
 }) => (
   <div
     className={clsx(
-      'p-4 w-[var(--card-width)] bg-blur-2 backdrop-blur-[var(--blur-amount)]',
+      'w-[var(--card-width)] bg-blur-2 backdrop-blur-[var(--blur-amount)]',
       side === 'left' && 'rounded-l-3xl',
       side === 'right' && 'rounded-r-3xl',
       className
