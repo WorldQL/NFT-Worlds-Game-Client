@@ -5,6 +5,7 @@ import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
 import { WorldIcon } from '~/components/worlds/WorldIcon'
 import { type World } from '~/lib/data/worlds'
+import { useLauncher } from '~/lib/hooks/useLauncher'
 import { ButtonText } from '../ui/ButtonText'
 
 interface Props {
@@ -22,10 +23,9 @@ export const WorldHeader: FC<Props> = ({
   style,
 }) => {
   const { push } = useRouter()
+  const { launch } = useLauncher(world)
 
-  const handleClickPrimary = useCallback(() => {
-    // TODO
-  }, [])
+  const handleClickPrimary = useCallback(() => launch(), [launch])
 
   const handleClickSecondary = useCallback(() => {
     if (secondary === 'details') {
