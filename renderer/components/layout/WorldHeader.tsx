@@ -23,7 +23,7 @@ export const WorldHeader: FC<Props> = ({
   style,
 }) => {
   const { push } = useRouter()
-  const { launch } = useLauncher(world)
+  const { launch, running } = useLauncher(world)
 
   const handleClickPrimary = useCallback(() => launch(), [launch])
 
@@ -52,8 +52,11 @@ export const WorldHeader: FC<Props> = ({
 
       <div className='flex gap-3 mt-6'>
         <div className='flex flex-col gap-3 items-center'>
-          <ButtonPrimary disabled={!world.online} onClick={handleClickPrimary}>
-            Play Now
+          <ButtonPrimary
+            disabled={!world.online || running}
+            onClick={handleClickPrimary}
+          >
+            {running ? 'Game is Running' : 'Play Now'}
           </ButtonPrimary>
 
           <PlayersOnline world={world} />

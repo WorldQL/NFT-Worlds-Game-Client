@@ -7155,6 +7155,7 @@ __metadata:
     postcss: ^8.4.14
     react: ^18.1.0
     react-dom: ^18.1.0
+    react-hooks-global-state: ^2.0.0-rc.0
     react-konami-code: ^2.3.0
     read-pkg-up: ^7.0.1
     semver: ^7.3.7
@@ -8018,6 +8019,17 @@ __metadata:
   peerDependencies:
     react: ^18.1.0
   checksum: bb0d48eeb0b297c79c2a03978baa29f5b3ff7ba3d070b21e34c9af1a6e7fdf0ca8b8d73e41f9214d91ad40eeb6d1f3559f884cbbc338713374a51320637c23df
+  languageName: node
+  linkType: hard
+
+"react-hooks-global-state@npm:^2.0.0-rc.0":
+  version: 2.0.0-rc.0
+  resolution: "react-hooks-global-state@npm:2.0.0-rc.0"
+  dependencies:
+    zustand: 4.0.0-rc.1
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 6a091ebdc12949d6c5fd188d3ba7b8036e8bdbe82e842aa2fce2d5a391c2aa45a403aa7ad1f0e9db40e81b18ca699d44c1eee626cbc2fab2c200eebabe86e37d
   languageName: node
   linkType: hard
 
@@ -9520,6 +9532,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:1.1.0":
+  version: 1.1.0
+  resolution: "use-sync-external-store@npm:1.1.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 8993a0b642f91d7fcdbb02b7b3ac984bd3af4769686f38291fe7fcfe73dfb73d6c64d20dfb7e5e7fbf5a6da8f5392d6f8e5b00c243a04975595946e82c02b883
+  languageName: node
+  linkType: hard
+
 "utf8-byte-length@npm:^1.0.1":
   version: 1.0.4
   resolution: "utf8-byte-length@npm:1.0.4"
@@ -9910,5 +9931,22 @@ __metadata:
   version: 1.0.0
   resolution: "yocto-queue@npm:1.0.0"
   checksum: 2cac84540f65c64ccc1683c267edce396b26b1e931aa429660aefac8fbe0188167b7aee815a3c22fa59a28a58d898d1a2b1825048f834d8d629f4c2a5d443801
+  languageName: node
+  linkType: hard
+
+"zustand@npm:4.0.0-rc.1":
+  version: 4.0.0-rc.1
+  resolution: "zustand@npm:4.0.0-rc.1"
+  dependencies:
+    use-sync-external-store: 1.1.0
+  peerDependencies:
+    immer: ">=9.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: c88ae96286229b3c463cf7989c860fcde8ec9cf885eb50a0e0eaf9642388d407a854e5e07b9f80676454732bf15e1c7645201cff21fd9feacd5df8bbd62fcd46
   languageName: node
   linkType: hard

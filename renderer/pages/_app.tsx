@@ -2,6 +2,7 @@ import { type AppProps } from 'next/app'
 import { useCallback } from 'react'
 import { useKonami } from 'react-konami-code'
 import { Titlebar } from '~/components/layout/Titlebar'
+import { useLaunchEvents } from '~/lib/hooks/useLaunchEvents'
 
 import '~/styles/globals.css'
 
@@ -13,6 +14,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     webContents.toggleDevTools()
   }, [])
 
+  useLaunchEvents()
   useKonami(handleKonami)
 
   return (
