@@ -7,7 +7,7 @@ import {
   WingedLayout,
 } from '~/components/layout/WingedLayout'
 import { WorldHeaderCarousel } from '~/components/layout/WorldHeaderCarousel'
-import { WorldCard } from '~/components/worlds/WorldCard'
+import { WorldGallery } from '~/components/worlds/WorldGallery'
 import { useWorlds } from '~/lib/hooks/useWorlds'
 
 const Root: NextPage = () => {
@@ -22,7 +22,9 @@ const Root: NextPage = () => {
         <Left>left</Left>
 
         <Center>
-          <WorldCard world={worlds[0]} />
+          <WorldGallery title='Recently Updated' worlds={worlds} />
+          <WorldGallery title='Fun Games' worlds={worlds} />
+          <WorldGallery title='Battle Royale Games' worlds={worlds} />
         </Center>
 
         <Right>right</Right>
