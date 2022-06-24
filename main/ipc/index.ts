@@ -13,6 +13,6 @@ export const initHandlers = (webContents: WebContents, data: Data) => {
 
   // eslint-disable-next-line max-params
   ipcMain.handle('launch:launch', async (_, profile, options, world, worlds) =>
-    launch(profile, options, world, worlds, webContents)
+    launch(profile, options, world, worlds, data.nftwToken, webContents)
   )
 }
