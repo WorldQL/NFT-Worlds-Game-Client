@@ -16,11 +16,11 @@ interface Props {
 export const PlayerHead: FC<Props> = ({ profile, className }) => {
   const ref = useRef<HTMLCanvasElement>(null)
   const skins = profile?.user.skins as readonly Skin[] | undefined
-  const skinURL = useMemo<string>(
+  const skinURL = useMemo<string | undefined>(
     () =>
       skins
         ?.find(x => x.state === 'ACTIVE')
-        ?.url?.replace('http://', 'https://') ?? 'aaa',
+        ?.url?.replace('http://', 'https://') ?? undefined,
     [skins]
   )
 
@@ -29,7 +29,7 @@ export const PlayerHead: FC<Props> = ({ profile, className }) => {
     if (typeof window === 'undefined') return undefined as HTMLImageElement
 
     const img = new Image()
-    img.src = skinURL
+    if (skinURL) img.src = skinURL
 
     return img
   }, [skinURL])
