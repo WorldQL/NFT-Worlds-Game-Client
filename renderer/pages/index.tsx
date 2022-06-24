@@ -8,6 +8,7 @@ import {
 } from '~/components/layout/WingedLayout'
 import { WorldHeaderCarousel } from '~/components/layout/WorldHeaderCarousel'
 import { WorldGallery } from '~/components/worlds/WorldGallery'
+import { WorldSidebarContainer } from '~/components/worlds/WorldSidebarContainer'
 import { useWorlds } from '~/lib/hooks/useWorlds'
 
 const Root: NextPage = () => {
@@ -19,7 +20,19 @@ const Root: NextPage = () => {
       <WorldHeaderCarousel />
 
       <WingedLayout>
-        <Left>left</Left>
+        <Left>
+          <WorldSidebarContainer
+            title='Play It Again'
+            // TODO: Populate with actual data
+            worlds={worlds.slice(0, 3)}
+          />
+
+          <WorldSidebarContainer
+            title='Top Worlds'
+            // TODO: Populate with actual data
+            worlds={worlds.slice(4, 20)}
+          />
+        </Left>
 
         <Center>
           <WorldGallery title='Recently Updated' worlds={worlds} />
