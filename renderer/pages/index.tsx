@@ -15,8 +15,9 @@ const Root: NextPage = () => {
   if (!worlds) return null
 
   return (
-    <Layout>
+    <Layout scroll>
       <WorldHeaderCarousel />
+
       <WingedLayout>
         <Left>left</Left>
 

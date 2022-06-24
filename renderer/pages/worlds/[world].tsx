@@ -25,7 +25,7 @@ const World: NextPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout scroll>
       <WorldHeader world={world} />
 
       <WingedLayout>
