@@ -1,5 +1,5 @@
 import { type AppProps } from 'next/app'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useKonami } from 'react-konami-code'
 import { Titlebar } from '~/components/layout/Titlebar'
 import { useLaunchEvents } from '~/lib/hooks/useLaunchEvents'
@@ -7,6 +7,11 @@ import { useLaunchEvents } from '~/lib/hooks/useLaunchEvents'
 import '~/styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    // Preload
+    void import('@electron/remote')
+  }, [])
+
   const handleKonami = useCallback(async () => {
     const { getCurrentWebContents } = await import('@electron/remote')
     const webContents = getCurrentWebContents()
