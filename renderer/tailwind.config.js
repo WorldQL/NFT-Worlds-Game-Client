@@ -37,6 +37,7 @@ module.exports = {
           1: 'rgb(255 255 255 / 10%)',
           2: 'rgb(255 255 255 / 20%)',
         },
+        wrld: '#02a4ff',
       },
       borderRadius: {
         window: '10px',

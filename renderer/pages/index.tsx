@@ -7,9 +7,21 @@ import {
   WingedLayout,
 } from '~/components/layout/WingedLayout'
 import { WorldHeaderCarousel } from '~/components/layout/WorldHeaderCarousel'
+import { type NFTItem } from '~/components/side/Item'
+import { NewItems } from '~/components/side/NewItems'
 import { WorldGallery } from '~/components/worlds/WorldGallery'
 import { WorldSidebarContainer } from '~/components/worlds/WorldSidebarContainer'
 import { useWorlds } from '~/lib/hooks/useWorlds'
+
+// TODO: Replace with actual data
+const dummyItems: readonly NFTItem[] = [
+  {
+    name: 'Eye of Ender',
+    image:
+      'https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7c/Blaze_Powder_JE2_BE1.png',
+    value: 243_071,
+  },
+] as const
 
 const Root: NextPage = () => {
   const { worlds } = useWorlds()
@@ -40,7 +52,10 @@ const Root: NextPage = () => {
           <WorldGallery title='Battle Royale Games' worlds={worlds} />
         </Center>
 
-        <Right>right</Right>
+        <Right>
+          {/* TODO: Populate with actual data */}
+          <NewItems items={dummyItems} />
+        </Right>
       </WingedLayout>
     </Layout>
   )
