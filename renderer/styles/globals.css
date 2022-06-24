@@ -7,7 +7,7 @@
 :root {
   --bg-darken: rgb(0 0 0 / 50%);
   --bg-gradient: linear-gradient();
-  --bg-image: url('~/assets/images/background.png');
+  --bg-image: url('~/assets/images/background.jpg');
   --background: var(--bg-darken) var(--bg-image);
 
   --pad: 5rem;
