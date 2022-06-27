@@ -8,6 +8,7 @@ import { SettingsContainer } from '~/components/settings/SettingsContainer'
 import { SettingsNav } from '~/components/settings/SettingsNav'
 import { SettingsNavItem } from '~/components/settings/SettingsNavItem'
 import { SettingsInput } from '~/components/ui/SettingsInput'
+import { Slider } from '~/components/ui/Slider'
 import { useSettingsView, viewNames } from '~/lib/hooks/useSettingsView'
 
 const Settings: NextPage = () => {
@@ -30,15 +31,6 @@ const Settings: NextPage = () => {
         </SettingsNav>
 
         {view === 'video' && <VideoSettings />}
-
-        {/* <div className='rounded-b-3xl p-8 flex-grow flex flex-col'>
-          <SettingsInput
-            name='Fullscreen'
-            type='bool'
-            value={bool}
-            onChange={setBool}
-          />
-        </div> */}
       </div>
     </Layout>
   )
@@ -46,6 +38,7 @@ const Settings: NextPage = () => {
 
 const VideoSettings: FC = () => {
   const [bool, setBool] = useState<boolean>(false)
+  const [number, setNumber] = useState<number>(15)
 
   return (
     <SettingsContainer>
@@ -61,11 +54,12 @@ const VideoSettings: FC = () => {
       <Divider />
 
       <SettingsColumn>
-        <SettingsInput
-          name='Fullscreen'
-          type='bool'
-          value={bool}
-          onChange={setBool}
+        <Slider
+          min={12}
+          max={25}
+          value={number}
+          step='any'
+          onChange={setNumber}
         />
       </SettingsColumn>
     </SettingsContainer>

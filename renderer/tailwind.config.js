@@ -47,6 +47,7 @@ module.exports = {
         main: '0 6px 6px rgb(0 0 0 / 30%)',
         light: '0 6px 6px rgb(0 0 0 / 20%)',
         lighter: '0 6px 6px rgb(0 0 0 / 10%)',
+        slider: 'inset 1px 3px 6px 1px rgb(0 0 0 / 40%)',
       },
       borderRadius: {
         window: '10px',
@@ -55,7 +56,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
-    plugin(function ({ addUtilities, addComponents }) {
+    plugin(function ({ addUtilities, addComponents, addVariant }) {
       addUtilities({
         '.drag': {
           '-webkit-app-region': 'drag',
@@ -110,6 +111,8 @@ module.exports = {
           },
         },
       })
+
+      addVariant('slider-thumb', '&::-webkit-slider-thumb')
     }),
   ],
 }
