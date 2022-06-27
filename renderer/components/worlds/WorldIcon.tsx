@@ -14,7 +14,7 @@ interface Props {
 export const WorldIcon: FC<Props> = ({ world, verified, className, style }) => (
   <div
     className={clsx(
-      'relative aspect-square w-[4.5rem] h-auto rounded-full bg-cover border-2 shadow-[inset_0_0_8px_black]',
+      'relative aspect-square w-[4.5rem] h-auto rounded-full bg-cover border-2 shadow-[inset_0_0_8px_black] bg-neutral-800',
       className
     )}
     style={{ backgroundImage: `url(${world.branding.icon})`, ...style }}
