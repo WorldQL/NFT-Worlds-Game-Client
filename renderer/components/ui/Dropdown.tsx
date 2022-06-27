@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { type FC, useCallback, useMemo, useState } from 'react'
 import { Arrow } from '~/components/svg/Arrow'
+import { Check } from '~/components/svg/Check'
 
 export type DisplayHandler<T extends Record<string, string>> = (
   value: keyof T,
@@ -44,7 +45,7 @@ export const Dropdown = <T extends Record<string, string>>({
 
   const selected = useMemo<string>(() => transform(value), [value, transform])
   return (
-    <div className='w-[var(--card-width)] relative font-semibold'>
+    <div className='w-[var(--card-width)] relative font-semibold z-10'>
       <div
         className={clsx(
           'w-full bgblur px-6 py-4 cursor-pointer flex items-center',
@@ -65,11 +66,14 @@ export const Dropdown = <T extends Record<string, string>>({
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
+          <div className='h-1 border-t border-neutral-100 border-opacity-20' />
+
           {Object.keys(options).map(key => (
             <DropdownItem
               key={key}
               value={key}
               display={transform(key)}
+              active={key === value}
               onClick={handleClick}
             />
           ))}
@@ -82,6 +86,7 @@ export const Dropdown = <T extends Record<string, string>>({
 interface ItemProps<T extends Record<string, string>> {
   value: keyof T
   display: string
+  active: boolean
 
   onClick: (value: keyof T) => void
 }
@@ -89,6 +94,7 @@ interface ItemProps<T extends Record<string, string>> {
 export const DropdownItem = <T extends Record<string, string>>({
   value,
   display,
+  active,
   onClick,
 }: ItemProps<T>): ReturnType<FC> => {
   const handleClick = useCallback(() => {
@@ -97,11 +103,11 @@ export const DropdownItem = <T extends Record<string, string>>({
 
   return (
     <div
-      className='px-6 py-3 hover:bg-blur-2 bg-opacity-50 first:mt-2 last:rounded-b-[28px] last:pb-4 cursor-pointer'
+      className='px-6 py-3 hover:bg-blur-2 bg-opacity-50 last:rounded-b-[28px] last:pb-4 cursor-pointer flex items-center'
       onClick={handleClick}
     >
-      {display}
-      {/* TODO: Add checkbox icon */}
+      <span className='grow'>{display}</span>
+      {active && <Check />}
     </div>
   )
 }
