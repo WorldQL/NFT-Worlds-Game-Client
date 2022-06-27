@@ -1,7 +1,10 @@
 import { type NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { Layout } from '~/components/layout/Layout'
 import { TitleHeader } from '~/components/layout/TitleHeader'
+import { Divider } from '~/components/settings/Divider'
+import { SettingsColumn } from '~/components/settings/SettingsColumn'
+import { SettingsContainer } from '~/components/settings/SettingsContainer'
 import { SettingsNav } from '~/components/settings/SettingsNav'
 import { SettingsNavItem } from '~/components/settings/SettingsNavItem'
 import { SettingsInput } from '~/components/ui/SettingsInput'
@@ -9,8 +12,6 @@ import { useSettingsView, viewNames } from '~/lib/hooks/useSettingsView'
 
 const Settings: NextPage = () => {
   const { view, setLastView } = useSettingsView()
-  const [bool, setBool] = useState<boolean>(false)
-
   useEffect(() => view && setLastView(view), [view, setLastView])
 
   return (
@@ -28,16 +29,46 @@ const Settings: NextPage = () => {
           ))}
         </SettingsNav>
 
-        <div className='rounded-b-3xl p-8 flex-grow flex flex-col'>
+        {view === 'video' && <VideoSettings />}
+
+        {/* <div className='rounded-b-3xl p-8 flex-grow flex flex-col'>
           <SettingsInput
             name='Fullscreen'
             type='bool'
             value={bool}
             onChange={setBool}
           />
-        </div>
+        </div> */}
       </div>
     </Layout>
+  )
+}
+
+const VideoSettings: FC = () => {
+  const [bool, setBool] = useState<boolean>(false)
+
+  return (
+    <SettingsContainer>
+      <SettingsColumn>
+        <SettingsInput
+          name='Fullscreen'
+          type='bool'
+          value={bool}
+          onChange={setBool}
+        />
+      </SettingsColumn>
+
+      <Divider />
+
+      <SettingsColumn>
+        <SettingsInput
+          name='Fullscreen'
+          type='bool'
+          value={bool}
+          onChange={setBool}
+        />
+      </SettingsColumn>
+    </SettingsContainer>
   )
 }
 
