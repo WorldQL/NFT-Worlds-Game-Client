@@ -24,6 +24,10 @@ module.exports = {
           green: '#03ff21',
           cyan: '#03ffda',
         },
+        off: {
+          1: '#ff9a02',
+          2: '#ff3f02',
+        },
         secondary: {
           DEFAULT: 'rgb(4 4 4 / 85%)',
           hover: 'rgb(4 4 4 / 80%)',
