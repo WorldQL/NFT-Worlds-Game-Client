@@ -23,13 +23,13 @@ export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
 
   return (
     <div
-      className='rounded-full bgblur backdrop-filter-[50px] w-[400px] flex gap-4 items-center cursor-text'
+      className='rounded-full bgblur backdrop-filter-[50px] grow flex gap-4 items-center cursor-text'
       onClick={focus}
     >
       <input
         ref={ref}
         type='text'
-        className='px-6 py-4 rounded-l-full grow bg-transparent outline-none font-medium'
+        className='px-6 py-4 rounded-l-full grow bg-transparent outline-none font-medium placeholder:text-white placeholder:opacity-50'
         value={value}
         placeholder={placeholder}
         onChange={handleChange}

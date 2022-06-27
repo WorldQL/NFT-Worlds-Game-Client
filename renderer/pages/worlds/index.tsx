@@ -47,7 +47,9 @@ const Worlds: NextPage = () => {
           onChange={() => undefined}
         />
 
-        <div className='col-span-3 flex justify-end'>
+        <div className='col-span-1' />
+
+        <div className='col-span-2 flex justify-end gap-3'>
           <Searchbar
             value={search}
             placeholder='Search Worlds'
