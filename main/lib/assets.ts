@@ -79,11 +79,13 @@ const assets: readonly Asset[] = [
     url: 'https://cdn.modrinth.com/data/AANobbMI/versions/mc1.18.2-0.4.1/sodium-fabric-mc1.18.2-0.4.1+build.15.jar',
     sha1: 'f839863a6be7014b8d80058ea1f361521148d049',
   },
+  /*
   {
     type: 'mod',
     url: 'https://media.forgecdn.net/files/3739/537/3dskinlayers-fabric-1.4.3-mc1.18.2.jar',
     sha1: 'e9696fdbbe0306913134baff0c1cd6a49eeffc68',
   },
+  */
   {
     type: 'mod',
     url: 'https://github.com/WorldQL/server-transfer-fabric-spigot/releases/download/v0.1.0/server-transfer-mod-0.1.0.jar',
