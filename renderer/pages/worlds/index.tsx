@@ -4,6 +4,7 @@ import { Layout } from '~/components/layout/Layout'
 import { TitleHeader } from '~/components/layout/TitleHeader'
 import { type DisplayHandler, Dropdown } from '~/components/ui/Dropdown'
 import { Searchbar } from '~/components/ui/Searchbar'
+import { ToggleViewButton, type View } from '~/components/ui/ToggleViewButton'
 import { WorldGrid } from '~/components/worlds/WorldGrid'
 import { useWorlds } from '~/lib/hooks/useWorlds'
 
@@ -32,6 +33,7 @@ const Worlds: NextPage = () => {
   const [filter, setFilter] = useState<keyof typeof worldFilter>('all')
   const [sort, setSort] = useState<keyof typeof worldSort>('recentUpdate')
   const [search, setSearch] = useState<string>('')
+  const [view, setView] = useState<View>('grid')
 
   return (
     <Layout>
@@ -41,10 +43,10 @@ const Worlds: NextPage = () => {
         <Dropdown options={worldFilter} value={filter} onChange={setFilter} />
 
         <Dropdown
-          value='recentUpdate'
+          value={sort}
           options={worldSort}
           display={displaySort}
-          onChange={() => undefined}
+          onChange={setSort}
         />
 
         <div className='col-span-1' />
@@ -55,10 +57,12 @@ const Worlds: NextPage = () => {
             placeholder='Search Worlds'
             onChange={setSearch}
           />
+
+          <ToggleViewButton view={view} onChange={setView} />
         </div>
       </div>
 
-      {worlds ? <WorldGrid worlds={worlds} /> : null}
+      {worlds ? view === 'grid' ? <WorldGrid worlds={worlds} /> : null : null}
     </Layout>
   )
 }
