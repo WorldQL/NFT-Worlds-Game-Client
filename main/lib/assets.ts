@@ -90,6 +90,11 @@ const assets: readonly Asset[] = [
     sha1: '65286443723b6608393e3cd307e21a88fbeaabdd',
   },
   {
+    type: 'mod',
+    url: 'https://github.com/WorldQL/avatar-selector-mod/releases/download/1.0.1/AvatarSelector-1.0-SNAPSHOT.jar',
+    sha1: '7776460993c37abc3aa625af1723dc27227106b4',
+  },
+  {
     type: 'shaderpack',
     url: 'https://media.forgecdn.net/files/3726/264/BSL_v8.1.02.2.zip',
     sha1: '6fe6b8c743ed3b29642e1c712bd47954466a13d5',
