@@ -56,7 +56,7 @@ const Container: FC<PropsWithChildren<ContainerProps>> = ({
       side === 'right' && '[--deg:90deg] rounded-r-full pl-5',
       active && 'bg-blur-2',
       !active &&
-        'bg-[linear-gradient(var(--deg),var(--shadow),transparent_15%)]'
+        'bg-[linear-gradient(var(--deg),var(--shadow),transparent_12%)]'
     )}
     onClick={onClick}
   >
