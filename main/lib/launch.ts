@@ -14,8 +14,10 @@ import { exists } from './http'
 import { ensureJava } from './java'
 import { patchM1Version } from './m1'
 import { generateServersFile, worldToServer } from './servers'
+import isDev from 'electron-is-dev'
 
 const launcher = new Client()
+const IS_DEV = isDev;
 
 const LAUNCH_STEPS = 8
 const MINECRAFT_VERSION = '1.18.2' as const
@@ -71,8 +73,11 @@ export const launch = async (
       5 / LAUNCH_STEPS
     )
 
+
     const assets = await fetchAssets()
-    await syncAssets(root, assets, options)
+    if (!IS_DEV) {
+      await syncAssets(root, assets, options)
+    }
 
     const _options: ILauncherOptions = {
       // @ts-expect-error Incorrect Typings
