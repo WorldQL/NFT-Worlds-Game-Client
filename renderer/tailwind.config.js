@@ -25,8 +25,8 @@ module.exports = {
           cyan: '#03ffda',
         },
         secondary: {
-          DEFAULT: 'rgb(4 4 4 / 75%)',
-          hover: 'rgb(4 4 4 / 60%)',
+          DEFAULT: 'rgb(4 4 4 / 85%)',
+          hover: 'rgb(4 4 4 / 80%)',
           border: 'rgb(230 230 230 / 20%)',
         },
         bg: {
@@ -38,6 +38,11 @@ module.exports = {
           2: 'rgb(255 255 255 / 20%)',
         },
         wrld: '#02a4ff',
+      },
+      boxShadow: {
+        main: '0 6px 6px rgb(0 0 0 / 30%)',
+        light: '0 6px 6px rgb(0 0 0 / 20%)',
+        lighter: '0 6px 6px rgb(0 0 0 / 10%)',
       },
       borderRadius: {
         window: '10px',
@@ -55,9 +60,9 @@ module.exports = {
           '-webkit-app-region': 'no-drag',
         },
         '.bgblur': {
-          'background-color': 'rgba(255, 255, 255, 0.1)',
+          'background-color': 'theme(colors.blur.1)',
           'backdrop-filter': 'blur(var(--blur-amount))',
-          'box-shadow': '0 6px 6px rgb(0 0 0 / 30%)',
+          'box-shadow': 'theme(boxShadow.main)',
         },
         '.pixelated': {
           'image-rendering': 'pixelated',
@@ -76,14 +81,14 @@ module.exports = {
             'background-clip': 'padding-box',
             'border-radius': '50px',
             'box-shadow': 'inset 0 0 0 1px transparent',
-            'background-color': 'rgba(0, 0, 0, 0.5)',
+            'background-color': 'rgb(0 0 0 / 50%)',
 
             '&:hover': {
-              'background-color': 'rgba(0, 0, 0, 0.55)',
+              'background-color': 'rgb(0 0 0 / 55%)',
             },
 
             '&:active': {
-              'background-color': 'rgba(0, 0, 0, 0.65)',
+              'background-color': 'rgb(0 0 0 / 65%)',
             },
           },
           '&::-webkit-scrollbar-button': {

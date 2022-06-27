@@ -6,7 +6,7 @@ export const ButtonPrimary: FC<PropsWithChildren<ButtonProps>> = ({
   ...props
 }) => (
   <Button
-    className='text-text-action bg-gradient-to-r enabled:hover:bg-gradient-to-l from-cta-green to-cta-cyan disabled:cursor-not-allowed'
+    className='text-text-action shadow-light bg-gradient-to-r enabled:hover:bg-gradient-to-l from-cta-green to-cta-cyan disabled:cursor-not-allowed'
     {...props}
   >
     {children}
