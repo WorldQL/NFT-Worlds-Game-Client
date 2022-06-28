@@ -27,12 +27,6 @@ export const WorldHeader: FC<Props> = ({
 
   const handleClickPrimary = useCallback(() => launch(), [launch])
 
-  const handleClickSecondary = useCallback(() => {
-    if (secondary === 'details') {
-      void push(`/worlds/${world.id}`)
-    }
-  }, [secondary, world.id, push])
-
   return (
     <div
       className={clsx('flex flex-col mx-[var(--card-width)] mt-8', className)}
@@ -53,6 +47,7 @@ export const WorldHeader: FC<Props> = ({
       <div className='flex gap-3 mt-6'>
         <div className='flex flex-col gap-3 items-center'>
           <ButtonPrimary
+            type='button'
             disabled={!world.online || running}
             onClick={handleClickPrimary}
           >
@@ -63,7 +58,9 @@ export const WorldHeader: FC<Props> = ({
         </div>
 
         {secondary === 'details' ? (
-          <ButtonText onClick={handleClickSecondary}>Details</ButtonText>
+          <ButtonText type='link' href={`/worlds/${world.id}`}>
+            Details
+          </ButtonText>
         ) : null}
       </div>
     </div>
