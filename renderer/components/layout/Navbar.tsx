@@ -1,12 +1,13 @@
+import clsx from 'clsx'
 import Link from 'next/link'
-import { type FC, useMemo } from 'react'
+import { forwardRef, useMemo } from 'react'
 import Logo from '~/assets/svg/logo.svg'
 import { Arrow } from '~/components/svg/Arrow'
 import { WRLDIcon } from '~/components/svg/WRLDIcon'
 import { useProfile } from '~/lib/hooks/useProfile'
 import { PlayerHead } from '../PlayerHead'
 
-export const Navbar: FC = () => {
+export const Navbar = forwardRef<HTMLElement>((_, ref) => {
   const { profile } = useProfile()
   const balance = useMemo<string | undefined>(
     () =>
@@ -17,7 +18,15 @@ export const Navbar: FC = () => {
   )
 
   return (
-    <nav className='z-50 min-h-[4rem] mt-8 flex items-center bgblur rounded-full text-xl'>
+    <nav
+      ref={ref}
+      className={clsx(
+        'absolute top-0 left-0 right-0 z-50',
+        'h-[4rem] mt-8',
+        'flex items-center',
+        'bgblur rounded-full text-xl'
+      )}
+    >
       <div className='w-[var(--card-width)] pl-5'>
         <img className='h-9' src={Logo.src} />
       </div>
@@ -46,4 +55,4 @@ export const Navbar: FC = () => {
       </div>
     </nav>
   )
-}
+})
