@@ -9,7 +9,9 @@
     "build": "nextron build",
     "publish": "nextron build --publish=always",
     "postinstall": "electron-builder install-app-deps",
-    "lint": "xo ./main ./renderer",
+    "lint:main": "xo --cwd=./main",
+    "lint:renderer": "xo --cwd=./renderer ./components ./lib ./pages",
+    "lint": "yarn run lint:main && yarn run lint:renderer",
     "test": "yarn run lint"
   },
   "devDependencies": {
