@@ -38,7 +38,7 @@ export const useLauncher = (world: World) => {
 
     setRunning(true)
     void launchGame(profile.user, options, world, worlds)
-  }, [world, profile, worlds, setRunning])
+  }, [world, profile, worlds, running, setRunning])
 
   return { launch, running }
 }
