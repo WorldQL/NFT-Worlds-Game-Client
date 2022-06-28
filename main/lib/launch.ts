@@ -8,16 +8,14 @@ import path, { join as joinPath } from 'node:path'
 import process from 'node:process'
 import { type LaunchOptions, type World } from '../types'
 import { fetchAssets, syncAssets } from './assets'
-import { APP_ROOT } from './env'
+import { APP_ROOT, IS_DEV } from './env'
 import { downloadFabric } from './fabric'
 import { exists } from './http'
 import { ensureJava } from './java'
 import { patchM1Version } from './m1'
 import { generateServersFile, worldToServer } from './servers'
-import isDev from 'electron-is-dev'
 
 const launcher = new Client()
-const IS_DEV = isDev;
 
 const LAUNCH_STEPS = 8
 const MINECRAFT_VERSION = '1.18.2' as const
@@ -73,8 +71,8 @@ export const launch = async (
       5 / LAUNCH_STEPS
     )
 
-
     const assets = await fetchAssets()
+    // TODO: Disable this once I understand why its needed
     if (!IS_DEV) {
       await syncAssets(root, assets, options)
     }
