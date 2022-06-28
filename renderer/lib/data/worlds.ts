@@ -43,12 +43,11 @@ export interface World {
   lastUpdated: Date
 }
 
+export const WORLDS_API_URL = 'https://status-api.nftworlds.com/latest'
 export const fetchWorlds: () => Promise<
   ReadonlyArray<Readonly<World>>
 > = async () => {
-  const { data } = await axios.get<readonly RawWorld[]>(
-    'https://status-api.nftworlds.com/latest'
-  )
+  const { data } = await axios.get<readonly RawWorld[]>(WORLDS_API_URL)
 
   const worlds = data.map(raw => {
     const world: World = {
