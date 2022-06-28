@@ -36,5 +36,5 @@ const TagContainer: FC<PropsWithChildren<TagContainerProps>> = ({
 )
 
 const Tag: FC<PropsWithChildren> = ({ children }) => (
-  <span className='bg-neutral-700 rounded px-2 py-1'>{children}</span>
+  <span className='bg-neutral-600 rounded px-2 py-1'>{children}</span>
 )

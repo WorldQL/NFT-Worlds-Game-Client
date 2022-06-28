@@ -38,8 +38,8 @@ module.exports = {
           bottom: '#232323',
         },
         blur: {
-          1: 'rgb(255 255 255 / 10%)',
-          2: 'rgb(255 255 255 / 20%)',
+          1: 'rgb(200 200 200 / 10%)',
+          light: 'rgb(200 200 200 / 18%)',
         },
         wrld: '#02a4ff',
       },
@@ -66,7 +66,7 @@ module.exports = {
         },
         '.bgblur': {
           'background-color': 'theme(colors.blur.1)',
-          'backdrop-filter': 'blur(var(--blur-amount))',
+          'backdrop-filter': 'var(--bgblur-filter)',
           'box-shadow': 'theme(boxShadow.main)',
         },
         '.pixelated': {

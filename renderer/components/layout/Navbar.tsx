@@ -17,7 +17,7 @@ export const Navbar: FC = () => {
   )
 
   return (
-    <nav className='min-h-[4rem] mt-8 flex items-center bgblur rounded-full text-xl'>
+    <nav className='z-50 min-h-[4rem] mt-8 flex items-center bgblur rounded-full text-xl'>
       <div className='w-[var(--card-width)] pl-5'>
         <img className='h-9' src={Logo.src} />
       </div>
@@ -28,7 +28,7 @@ export const Navbar: FC = () => {
         <Link href='/settings'>Settings</Link>
       </div>
 
-      <div className='h-full w-[var(--card-width)] px-5 rounded-r-full bg-blur-1 flex items-center gap-4'>
+      <div className='h-full w-[var(--card-width)] px-5 rounded-r-full bg-blur-light flex items-center gap-4'>
         <div className='flex grow h-10 gap-4'>
           <PlayerHead profile={profile} className='rounded-full pixelated' />
 

@@ -15,6 +15,9 @@
 
   --blur-amount: 10px;
   --blur-amount-fix: calc(var(--blur-amount) + 0.01px);
+
+  --brightness: 0.8;
+  --bgblur-filter: blur(var(--blur-amount)) brightness(var(--brightness));
 }
 
 #background {

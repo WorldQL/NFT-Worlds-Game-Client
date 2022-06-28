@@ -54,7 +54,7 @@ const Container: FC<PropsWithChildren<ContainerProps>> = ({
       '[--shadow:rgba(0,0,0,0.2)] flex items-center px-6 cursor-pointer',
       side === 'left' && '[--deg:-90deg] rounded-l-full pr-5',
       side === 'right' && '[--deg:90deg] rounded-r-full pl-5',
-      active && 'bg-blur-2',
+      active && 'bg-blur-light',
       !active &&
         'bg-[linear-gradient(var(--deg),var(--shadow),transparent_12%)]'
     )}

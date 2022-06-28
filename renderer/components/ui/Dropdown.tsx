@@ -51,7 +51,7 @@ export const Dropdown = <T extends Record<string, string>>({
           'w-full bgblur px-6 py-4 cursor-pointer flex items-center',
           !open && 'rounded-full',
           open &&
-            'rounded-t-[28px] rounded-b-none shadow-none !backdrop-blur-[var(--blur-amount-fix)]'
+            'rounded-t-[28px] rounded-b-none shadow-none !backdrop-blur-[var(--blur-amount-fix)] backdrop-brightness-[var(--brightness)]'
         )}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
@@ -103,7 +103,7 @@ export const DropdownItem = <T extends Record<string, string>>({
 
   return (
     <div
-      className='px-6 py-3 hover:bg-blur-2 bg-opacity-50 last:rounded-b-[28px] last:pb-4 cursor-pointer flex items-center'
+      className='px-6 py-3 hover:bg-blur-light bg-opacity-50 last:rounded-b-[28px] last:pb-4 cursor-pointer flex items-center'
       onClick={handleClick}
     >
       <span className='grow'>{display}</span>

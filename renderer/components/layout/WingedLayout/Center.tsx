@@ -11,7 +11,7 @@ export const Center: FC<PropsWithChildren<Props>> = ({
   style,
   children,
 }) => (
-  <div className='grow p-4 bg-blur-1 backdrop-blur-[var(--blur-amount)]'>
+  <div className='z-10 grow p-4 bg-blur-1 backdrop-blur-[var(--blur-amount)]'>
     <div className={clsx('-mt-20 -mb-6', className)} style={style}>
       {children}
     </div>

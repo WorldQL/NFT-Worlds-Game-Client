@@ -18,7 +18,7 @@ export const SettingsNavItem: FC<Props> = ({ id, name, active }) => {
     <span
       className={clsx(
         'cursor-pointer transition-opacity',
-        !active && 'opacity-60'
+        !active && 'opacity-50'
       )}
       onClick={handleClick}
     >
