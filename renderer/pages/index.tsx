@@ -9,6 +9,7 @@ import {
 import { WorldHeaderCarousel } from '~/components/layout/WorldHeaderCarousel'
 import { type NFTItem } from '~/components/side/Item'
 import { NewItems } from '~/components/side/NewItems'
+import { ButtonContextual } from '~/components/ui/ButtonContextual'
 import { WorldGallery } from '~/components/worlds/WorldGallery'
 import { WorldSidebarContainer } from '~/components/worlds/WorldSidebarContainer'
 import { useWorlds } from '~/lib/hooks/useWorlds'
@@ -25,8 +26,8 @@ export const dummyItems: readonly NFTItem[] = [
 
 const Root: NextPage = () => {
   const { worlds } = useWorlds()
-  if (!worlds) return null
 
+  if (!worlds) return null
   return (
     <Layout scroll>
       <WorldHeaderCarousel />
@@ -50,6 +51,12 @@ const Root: NextPage = () => {
           <WorldGallery title='Recently Updated' worlds={worlds} />
           <WorldGallery title='Fun Games' worlds={worlds} />
           <WorldGallery title='Battle Royale Games' worlds={worlds} />
+
+          <div className='flex flex-col items-center'>
+            <ButtonContextual type='link' href='/worlds'>
+              Discover More Worlds
+            </ButtonContextual>
+          </div>
         </Center>
 
         <Right>
@@ -57,6 +64,11 @@ const Root: NextPage = () => {
           <NewItems items={dummyItems} />
         </Right>
       </WingedLayout>
+
+      <p className='mt-5 text-center text-xs text-neutral-500'>
+        NFT Worlds is in no way associated with, endorsed by, or a partner of
+        Minecraft, Mojang, Microsoft or any related parties.
+      </p>
     </Layout>
   )
 }
