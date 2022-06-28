@@ -14,7 +14,7 @@ import { WorldSidebarContainer } from '~/components/worlds/WorldSidebarContainer
 import { useWorlds } from '~/lib/hooks/useWorlds'
 
 // TODO: Replace with actual data
-const dummyItems: readonly NFTItem[] = [
+export const dummyItems: readonly NFTItem[] = [
   {
     name: 'Eye of Ender',
     image:
