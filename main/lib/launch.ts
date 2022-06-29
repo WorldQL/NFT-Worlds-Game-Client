@@ -114,10 +114,15 @@ export const launch = async (
     }
 
     launcher.removeAllListeners()
-    launcher.on('data', (...args) => webContents.send('launch:@data', ...args))
-    launcher.on('debug', (...args) =>
-      webContents.send('launch:@debug', ...args)
-    )
+    launcher.on('data', message => {
+      webContents.send('launch:@data', message)
+      if (IS_DEV) console.log(message)
+    })
+
+    launcher.on('debug', message => {
+      webContents.send('launch:@debug', message)
+      if (IS_DEV) console.log(message)
+    })
 
     launcher.on(
       'progress',
