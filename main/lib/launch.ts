@@ -3,6 +3,7 @@ import { Client, type ILauncherOptions } from 'minecraft-launcher-core'
 import mkdirp from 'mkdirp'
 import { getMCLC, type profile as Profile } from 'msmc'
 import { Buffer } from 'node:buffer'
+import { createWriteStream } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import path, { join as joinPath } from 'node:path'
 import process from 'node:process'
@@ -113,15 +114,21 @@ export const launch = async (
       ],
     }
 
+    const logsDir = joinPath(APP_ROOT, 'logs')
+    await mkdirp(logsDir)
+
+    const logFile = joinPath(logsDir, 'minecraft.log')
+    const logStream = IS_DEV ? createWriteStream(logFile) : undefined
+
     launcher.removeAllListeners()
     launcher.on('data', message => {
       webContents.send('launch:@data', message)
-      if (IS_DEV) console.log(message)
+      logStream?.write(message)
     })
 
     launcher.on('debug', message => {
       webContents.send('launch:@debug', message)
-      if (IS_DEV) console.log(message)
+      logStream?.write(message)
     })
 
     launcher.on(

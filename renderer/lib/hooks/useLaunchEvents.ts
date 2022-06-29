@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react'
+import { getEnv } from '~/lib/env'
 import { useGlobalState } from '~/lib/hooks/useLauncher'
 import { type EventHandler, launchEvents } from '~/lib/ipc/launch'
 
@@ -13,12 +14,14 @@ export const useLaunchEvents = () => {
     setRunning(false)
   }, [setRunning])
 
-  const onData = useCallback<EventHandler<'data'>>(() => {
-    // TODO
+  const onData = useCallback<EventHandler<'data'>>(async message => {
+    const env = await getEnv()
+    if (env.isDev) console.log(message)
   }, [])
 
-  const onDebug = useCallback<EventHandler<'debug'>>(() => {
-    // TODO
+  const onDebug = useCallback<EventHandler<'debug'>>(async message => {
+    const env = await getEnv()
+    if (env.isDev) console.log(message)
   }, [])
 
   const onUpdate = useCallback<EventHandler<'update'>>(() => {
