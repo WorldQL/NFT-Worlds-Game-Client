@@ -9,9 +9,7 @@ import process from 'node:process'
 import { initHandlers } from './ipc/index'
 import { authenticate } from './lib/auth'
 import { APP_ROOT, IS_DEV, VERSION } from './lib/env'
-// TODO
-// import { getSecureKey } from './lib/encryption'
-// Import { exists } from './lib/http'
+import { exists } from './lib/http'
 
 if (process.platform === 'win32') {
   app.setAppUserModelId('NFT Worlds')
@@ -71,9 +69,8 @@ const checkForUpdates = async () => {
   if (IS_DEV) return false
 
   const noUpdateFile = joinPath(APP_ROOT, '.noupdate')
-  // TODO
-  // const noUpdate = await exists(noUpdateFile)
-  // if (noUpdate) return false
+  const noUpdate = await exists(noUpdateFile)
+  if (noUpdate) return false
 
   const updates = await autoUpdater.checkForUpdates()
   if (updates === null) return false
@@ -86,10 +83,6 @@ if (!IS_DEV) serve({ directory: 'app' })
 
 void app.whenReady().then(async () => {
   const updateCheckJob = checkForUpdates()
-
-  // TODO
-  // // @ts-expect-error Global Assign
-  // global.__SECURE_STORE_KEY = getSecureKey()
 
   const { win, load } = await createWindow()
   const { profile, nftwToken } = await authenticate()
