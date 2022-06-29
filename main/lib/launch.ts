@@ -71,9 +71,11 @@ export const launch = async (
       5 / LAUNCH_STEPS
     )
 
-    const assets = await fetchAssets()
-    // TODO: Disable this once I understand why its needed
-    if (!IS_DEV) {
+    const noSyncFile = joinPath(APP_ROOT, '.nosync')
+    const noSync = await exists(noSyncFile)
+
+    if (!noSync) {
+      const assets = await fetchAssets()
       await syncAssets(root, assets, options)
     }
 
