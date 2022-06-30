@@ -1,47 +1,78 @@
 import clsx from 'clsx'
 import {
+  type Dispatch,
   type FC,
   type MouseEventHandler,
   type PropsWithChildren,
+  type SetStateAction,
   useCallback,
+  useEffect,
+  useMemo,
   useRef,
 } from 'react'
-import { ButtonPrimary } from '../ui/ButtonPrimary'
+import { createPortal } from 'react-dom'
+import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 
-interface Props {
+export type CloseOrFn = 'close' | (() => void)
+export interface Props {
   visible: boolean
-  title: string
-  button: string
+  setVisible: Dispatch<SetStateAction<boolean>>
 
-  onButtonClick?: () => void
-  onOuterClick?: () => void
+  title: string
+  button?: string
+
+  onButtonClick?: CloseOrFn
+  onOuterClick?: CloseOrFn
+  onEsc?: CloseOrFn
 }
 
-export const Modal: FC<PropsWithChildren<Props>> = ({
+const Modal: FC<PropsWithChildren<Props>> = ({
   visible,
+  setVisible,
   title,
   button,
   onButtonClick,
   onOuterClick,
+  onEsc,
   children,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const handleButtonClick = useCallback(() => {
+    if (onButtonClick === 'close') setVisible(false)
     if (typeof onButtonClick === 'function') onButtonClick()
-  }, [onButtonClick])
+  }, [setVisible, onButtonClick])
 
   const handleOuterClick = useCallback<MouseEventHandler<HTMLDivElement>>(
     ev => {
       if (!containerRef.current) return
 
       const isOuter = ev.target === containerRef.current
-      if (isOuter && typeof onOuterClick === 'function') {
-        onOuterClick()
-      }
+      if (!isOuter) return
+
+      if (onOuterClick === 'close') setVisible(false)
+      if (typeof onOuterClick === 'function') onOuterClick()
     },
-    [onOuterClick]
+    [setVisible, onOuterClick]
   )
+
+  const handleEsc = useCallback(
+    (ev: KeyboardEvent) => {
+      if (ev.key !== 'Escape') return
+
+      if (onEsc === 'close') setVisible(false)
+      if (typeof onEsc === 'function') onEsc()
+    },
+    [setVisible, onEsc]
+  )
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEsc)
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc)
+    }
+  }, [handleEsc])
 
   return (
     <div
@@ -66,14 +97,35 @@ export const Modal: FC<PropsWithChildren<Props>> = ({
           <h1 className='text-xl font-bold'>{title}</h1>
         </div>
 
-        <div className='px-6 mt-6'>{children}</div>
+        <div className='px-6 my-6'>{children}</div>
 
-        <div className='py-6 flex justify-center'>
-          <ButtonPrimary type='button' onClick={handleButtonClick}>
-            {button}
-          </ButtonPrimary>
-        </div>
+        {button && (
+          <div className='pb-6 flex justify-center'>
+            <ButtonPrimary type='button' onClick={handleButtonClick}>
+              {button}
+            </ButtonPrimary>
+          </div>
+        )}
       </div>
     </div>
   )
 }
+
+type PortalProps = Props & { portal?: string }
+
+const ModalPortal: FC<PropsWithChildren<PortalProps>> = ({
+  portal = '#root',
+  children,
+  ...props
+}) => {
+  const container = useMemo(() => {
+    const container = document.querySelector(portal)
+    if (!container) throw new Error('invalid portal container')
+
+    return container
+  }, [portal])
+
+  return createPortal(<Modal {...props}>{children}</Modal>, container)
+}
+
+export { ModalPortal as Modal }
