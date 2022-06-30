@@ -1,5 +1,8 @@
 import * as remote from '@electron/remote/main'
 import { app, BrowserWindow, dialog } from 'electron'
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer'
 import log from 'electron-log'
 import serve from 'electron-serve'
 import Store from 'electron-store'
@@ -82,6 +85,10 @@ const checkForUpdates = async () => {
 if (!IS_DEV) serve({ directory: 'app' })
 
 void app.whenReady().then(async () => {
+  if (IS_DEV) {
+    await installExtension([REACT_DEVELOPER_TOOLS])
+  }
+
   const updateCheckJob = checkForUpdates()
 
   const { win, load } = await createWindow()
