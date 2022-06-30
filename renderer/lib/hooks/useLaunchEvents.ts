@@ -8,8 +8,8 @@ export const useLaunchEvents = () => {
   const [, setRunning] = useGlobalState('running')
 
   const [launchState, setLaunchState] = useGlobalState('launchState')
-  const [launchTask, setLaunchTask] = useGlobalState('launchTask')
-  const [launchProgress, setLaunchProgress] = useGlobalState('launchProgress')
+  const [task, setLaunchTask] = useGlobalState('launchTask')
+  const [progress, setLaunchProgress] = useGlobalState('launchProgress')
 
   const onOpen = useCallback<EventHandler<'open'>>(() => {
     setLaunching(false)
@@ -79,10 +79,10 @@ export const useLaunchEvents = () => {
     }
   }, [onOpen, onClose, onData, onDebug, onUpdate, onProgress])
 
-  const state = useMemo<string>(
-    () => launchState ?? 'Preparing to Launch',
-    [launchState]
+  const state = useMemo<string | undefined>(
+    () => (launching ? launchState ?? 'Preparing to Launch' : undefined),
+    [launching, launchState]
   )
 
-  return { launching, launchState: state, launchTask, launchProgress }
+  return { launching, state, task, progress }
 }

@@ -7,10 +7,10 @@ import { useLaunchEvents } from '~/lib/hooks/useLaunchEvents'
 
 import '~/styles/globals.css'
 
-const Modal = dynamic(
+const LaunchModal = dynamic(
   async () => {
-    const m = await import('~/components/layout/Modal')
-    return m.Modal
+    const m = await import('~/components/LaunchModal')
+    return m.LaunchModal
   },
   {
     ssr: false,
@@ -31,13 +31,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   useKonami(handleKonami)
-
-  const {
-    launching,
-    launchState: state,
-    launchTask: task,
-    launchProgress: progress,
-  } = useLaunchEvents()
+  const { launching, ...launchState } = useLaunchEvents()
 
   return (
     <div
@@ -49,14 +43,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         id='root'
         className='w-full flex-1 overflow-y-clip text-text rounded-b-window'
       >
-        <Modal
-          visible={launching}
-          setVisible={() => undefined}
-          title='Launching Minecraft'
-        >
-          {/* TODO: Make pretty */}
-          <pre>{JSON.stringify({ state, task, progress }, null, 2)}</pre>
-        </Modal>
+        <LaunchModal visible={launching} {...launchState} />
 
         <Component {...pageProps} />
       </div>
