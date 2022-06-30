@@ -1,18 +1,38 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { getEnv } from '~/lib/env'
 import { useGlobalState } from '~/lib/hooks/useLauncher'
 import { type EventHandler, launchEvents } from '~/lib/ipc/launch'
 
 export const useLaunchEvents = () => {
-  const [running, setRunning] = useGlobalState('running')
+  const [launching, setLaunching] = useGlobalState('launching')
+  const [, setRunning] = useGlobalState('running')
+
+  const [launchState, setLaunchState] = useGlobalState('launchState')
+  const [launchTask, setLaunchTask] = useGlobalState('launchTask')
+  const [launchProgress, setLaunchProgress] = useGlobalState('launchProgress')
 
   const onOpen = useCallback<EventHandler<'open'>>(() => {
+    setLaunching(false)
     setRunning(true)
-  }, [setRunning])
+
+    setLaunchState(undefined)
+    setLaunchTask(undefined)
+    setLaunchProgress(undefined)
+  }, [
+    setLaunching,
+    setRunning,
+    setLaunchState,
+    setLaunchTask,
+    setLaunchProgress,
+  ])
 
   const onClose = useCallback<EventHandler<'close'>>(() => {
     setRunning(false)
-  }, [setRunning])
+
+    setLaunchState(undefined)
+    setLaunchTask(undefined)
+    setLaunchProgress(undefined)
+  }, [setRunning, setLaunchState, setLaunchTask, setLaunchProgress])
 
   const onData = useCallback<EventHandler<'data'>>(async message => {
     const env = await getEnv()
@@ -24,13 +44,22 @@ export const useLaunchEvents = () => {
     if (env.isDev) console.log(message)
   }, [])
 
-  const onUpdate = useCallback<EventHandler<'update'>>(() => {
-    // TODO
-  }, [])
+  const onUpdate = useCallback<EventHandler<'update'>>(
+    (message, percentage) => {
+      setLaunchState(message)
+      setLaunchTask(undefined)
+      setLaunchProgress(percentage * 100)
+    },
+    [setLaunchState, setLaunchTask, setLaunchProgress]
+  )
 
-  const onProgress = useCallback<EventHandler<'progress'>>(() => {
-    // TODO
-  }, [])
+  const onProgress = useCallback<EventHandler<'progress'>>(
+    (type, task, total) => {
+      if (launchState !== 'Downloading Minecraft') return
+      setLaunchTask(`${type} [${task} / ${total}]`)
+    },
+    [launchState, setLaunchTask]
+  )
 
   useEffect(() => {
     launchEvents.addListener('open', onOpen)
@@ -49,4 +78,11 @@ export const useLaunchEvents = () => {
       launchEvents.removeListener('progress', onProgress)
     }
   }, [onOpen, onClose, onData, onDebug, onUpdate, onProgress])
+
+  const state = useMemo<string>(
+    () => launchState ?? 'Preparing to Launch',
+    [launchState]
+  )
+
+  return { launching, launchState: state, launchTask, launchProgress }
 }
