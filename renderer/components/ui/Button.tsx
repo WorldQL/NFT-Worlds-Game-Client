@@ -43,7 +43,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       className={clsx(
-        'w-[var(--card-width)] h-fit px-6 py-4 rounded-full text-lg font-bold disabled:cursor-not-allowed',
+        'w-[var(--card-width)] h-fit px-6 py-4 rounded-full text-lg font-bold outline-none disabled:cursor-not-allowed',
         className
       )}
       type='button'
