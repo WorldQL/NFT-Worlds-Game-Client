@@ -21,7 +21,7 @@ export const Navbar = forwardRef<HTMLElement>((_, ref) => {
     <nav
       ref={ref}
       className={clsx(
-        'absolute top-0 left-0 right-0 z-50',
+        'absolute top-0 left-0 right-0 z-40',
         'h-[4rem] mt-8',
         'flex items-center',
         'bgblur rounded-full text-xl'

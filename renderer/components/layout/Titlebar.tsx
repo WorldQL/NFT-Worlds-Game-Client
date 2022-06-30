@@ -19,7 +19,7 @@ export const Titlebar: FC = () => {
   }, [])
 
   return (
-    <div className='w-full h-6 bg-blur-light backdrop-blur-[var(--blur-amount)] rounded-t-window drag flex items-center'>
+    <div className='z-[100] w-full h-6 bg-blur-light backdrop-blur-[var(--blur-amount)] rounded-t-window drag flex items-center'>
       <span className='pl-1 text-sm font-semibold ml-1 text-text flex-grow'>
         NFT Worlds
       </span>

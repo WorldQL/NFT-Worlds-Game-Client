@@ -39,7 +39,9 @@ module.exports = {
         },
         blur: {
           1: 'rgb(200 200 200 / 10%)',
+          tint: 'rgb(200 200 200 / 15%)',
           light: 'rgb(200 200 200 / 18%)',
+          modal: 'rgb(40 40 40 / 60%)',
         },
         wrld: '#02a4ff',
       },
@@ -47,6 +49,8 @@ module.exports = {
         main: '0 6px 6px rgb(0 0 0 / 30%)',
         light: '0 6px 6px rgb(0 0 0 / 20%)',
         lighter: '0 6px 6px rgb(0 0 0 / 10%)',
+        modal: '0 10px 15px rgb(0 0 0 / 65%)',
+        'modal-title': '0 6px 10px rgb(0 0 0 / 32%)',
         slider: 'inset 1px 3px 6px 1px rgb(0 0 0 / 40%)',
       },
       borderRadius: {
