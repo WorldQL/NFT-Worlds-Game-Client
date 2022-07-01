@@ -162,7 +162,7 @@ export const launch = async (
     }
 
     await launcher.launch(_options)
-    webContents.send('launch:@update', 'Launching Minecraft', 7 / LAUNCH_STEPS)
+    webContents.send('launch:@update', 'Launching Game', 7 / LAUNCH_STEPS)
   } catch (error: unknown) {
     webContents.send('launch:@close', -1)
     throw error

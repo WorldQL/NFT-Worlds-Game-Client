@@ -4,12 +4,12 @@ import { launch as launchGame, type LaunchOptions } from '~/lib/ipc/launch'
 import { useProfile } from './useProfile'
 import { useWorlds, type World } from './useWorlds'
 
-interface GlobalState {
+export interface GlobalState {
   launching: boolean
   running: boolean
 
   launchStatus: string | undefined
-  launchTask: string | undefined
+  launchTask: { type: string; task: number; total: number } | undefined
   launchProgress: number | undefined
 }
 

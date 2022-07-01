@@ -56,7 +56,7 @@ export const useLaunchEvents = () => {
   const onProgress = useCallback<EventHandler<'progress'>>(
     (type, task, total) => {
       if (launchStatus !== 'Downloading Minecraft') return
-      setLaunchTask(`${type} [${task} / ${total}]`)
+      setLaunchTask({ type, task, total })
     },
     [launchStatus, setLaunchTask]
   )
