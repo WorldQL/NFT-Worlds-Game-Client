@@ -7218,6 +7218,7 @@ __metadata:
     react-dom: ^18.2.0
     react-hooks-global-state: ^2.0.0-rc.0
     react-konami-code: ^2.3.0
+    react-spinners: ^0.13.3
     read-pkg-up: ^7.0.1
     semver: ^7.3.7
     swr: ^1.3.0
@@ -8117,6 +8118,16 @@ __metadata:
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
   checksum: 9cdaa1e7466b0e22474b00dbcd895b7b0aa82a12f07ac870a833b84b328b0e712f5cfa46596fec70d5833bc75de2b666ed630d8fdbf9518dd530841a569e6364
+  languageName: node
+  linkType: hard
+
+"react-spinners@npm:^0.13.3":
+  version: 0.13.3
+  resolution: "react-spinners@npm:0.13.3"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: d2798ed59d129fb151e3ec99d027a77ff5a2faeed3d05d94707a53dce56406ed94b72da1c99f142bae563e366827aac53fcb1ae403074a3b1f78bb4f519dea72
   languageName: node
   linkType: hard
 
