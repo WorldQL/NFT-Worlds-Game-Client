@@ -8,7 +8,7 @@ interface GlobalState {
   launching: boolean
   running: boolean
 
-  launchState: string | undefined
+  launchStatus: string | undefined
   launchTask: string | undefined
   launchProgress: number | undefined
 }
@@ -17,7 +17,7 @@ const initialState: GlobalState = {
   launching: false,
   running: false,
 
-  launchState: undefined,
+  launchStatus: undefined,
   launchTask: undefined,
   launchProgress: undefined,
 }
@@ -32,8 +32,8 @@ export const useLauncher = (world: World) => {
   const [, setLaunching] = useGlobalState('launching')
   const [running, setRunning] = useGlobalState('running')
 
-  const [, setLaunchState] = useGlobalState('launchState')
-  const [, setLaunchTask] = useGlobalState('launchState')
+  const [, setLaunchStatus] = useGlobalState('launchStatus')
+  const [, setLaunchTask] = useGlobalState('launchTask')
   const [, setLaunchProgress] = useGlobalState('launchProgress')
 
   const launch = useCallback(() => {
@@ -55,7 +55,7 @@ export const useLauncher = (world: World) => {
     setLaunching(true)
     setRunning(true)
 
-    setLaunchState(undefined)
+    setLaunchStatus(undefined)
     setLaunchTask(undefined)
     setLaunchProgress(undefined)
 
@@ -67,7 +67,7 @@ export const useLauncher = (world: World) => {
     running,
     setLaunching,
     setRunning,
-    setLaunchState,
+    setLaunchStatus,
     setLaunchTask,
     setLaunchProgress,
   ])
