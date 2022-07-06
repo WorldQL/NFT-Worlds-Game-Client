@@ -40,12 +40,15 @@ interface IndicatorProps {
   glow?: boolean
 }
 
-// TODO: Implement glow
 const OnlineIndicator: FC<IndicatorProps> = ({ online, glow }) => (
   <div
     className={clsx(
-      '[--oi-size:0.4em] w-[var(--oi-size)] h-[var(--oi-size)] aspect-square rounded-full',
-      online && 'bg-cta-green',
+      'isolate relative aspect-square rounded-full',
+      '[--oi-size:6px] w-[var(--oi-size)] h-[var(--oi-size)]',
+      glow && 'after:-z-10 after:rounded-full after:absolute',
+      glow && 'after:top-0 after:left-0 after:bottom-0 after:right-0',
+      online && 'bg-cta-green after:bg-cta-green',
+      online && glow && 'motion-safe:after:animate-ping',
       !online && 'bg-neutral-500'
     )}
   />

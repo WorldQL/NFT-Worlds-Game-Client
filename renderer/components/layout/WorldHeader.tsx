@@ -54,7 +54,7 @@ export const WorldHeader: FC<Props> = ({
             {running ? 'Game is Running' : 'Play Now'}
           </ButtonPrimary>
 
-          <PlayersOnline world={world} />
+          <PlayersOnline glow world={world} />
         </div>
 
         {secondary === 'details' ? (
