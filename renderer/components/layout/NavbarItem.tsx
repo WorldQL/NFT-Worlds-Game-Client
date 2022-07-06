@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren, useMemo } from 'react'
@@ -18,5 +19,16 @@ export const NavbarItem: FC<PropsWithChildren<Props>> = ({
     return pathname === href
   }, [href, pathname, exact])
 
-  return <Link href={href}>{children}</Link>
+  return (
+    <Link href={href}>
+      <a
+        className={clsx(
+          'h-full flex flex-col justify-center',
+          active && 'border-b-2 border-t-2 border-t-transparent'
+        )}
+      >
+        {children}
+      </a>
+    </Link>
+  )
 }

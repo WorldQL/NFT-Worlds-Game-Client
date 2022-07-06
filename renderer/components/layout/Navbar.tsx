@@ -31,7 +31,7 @@ export const Navbar = forwardRef<HTMLElement>((_, ref) => {
         <img className='h-9' src={Logo.src} />
       </div>
 
-      <div className='flex-grow flex gap-10 justify-center font-semibold'>
+      <div className='h-full flex-grow flex gap-10 justify-center font-semibold'>
         <NavbarItem href='/'>Home</NavbarItem>
         <NavbarItem href='/inventory'>Inventory</NavbarItem>
         <NavbarItem href='/worlds'>Worlds</NavbarItem>
