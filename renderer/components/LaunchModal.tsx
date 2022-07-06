@@ -1,7 +1,7 @@
 import { type FC, useCallback, useMemo } from 'react'
+import { BarLoader } from 'react-spinners'
 import { Modal } from '~/components/layout/Modal'
 import { type GlobalState } from '~/lib/hooks/useLauncher'
-import { BarLoader } from 'react-spinners';
 
 interface Props {
   visible: boolean
@@ -32,12 +32,9 @@ export const LaunchModal: FC<Props> = ({ visible, status, task, progress }) => {
     <Modal visible={visible} setVisible={noOp} title={title}>
       <h2 className='font-semibold mb-2'>Status</h2>
       <div className='text-center'>
-      <BarLoader
-        color="#00e67e"
-        height={6}
-        width={200}
-      />
+        <BarLoader color='#00e67e' height={6} width={200} />
       </div>
+
       <p className='text-sm'>
         {status}
         {task ? (
