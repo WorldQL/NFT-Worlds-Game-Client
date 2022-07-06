@@ -44,7 +44,7 @@ module.exports = {
           modal: 'rgb(40 40 40 / 60%)',
         },
         wrld: '#02a4ff',
-        'card-stroke': '#ba63ff',
+        'card-stroke': '#fefefe',
       },
       boxShadow: {
         main: '0 6px 6px rgb(0 0 0 / 30%)',
