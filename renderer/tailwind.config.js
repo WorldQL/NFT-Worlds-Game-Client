@@ -53,6 +53,7 @@ module.exports = {
         modal: '0 10px 15px rgb(0 0 0 / 65%)',
         'modal-title': '0 6px 10px rgb(0 0 0 / 32%)',
         slider: 'inset 1px 3px 6px 1px rgb(0 0 0 / 40%)',
+        'card-image': 'inset 0 0 0px 1px rgb(255 255 255 / 20%)',
       },
       borderRadius: {
         window: '10px',

@@ -30,12 +30,12 @@ export const WorldCard: FC<Props> = ({ world }) => {
       )}
       onClick={handleClick}
     >
-      <img
-        className='h-[200px] object-cover rounded-t-2xl'
-        src={world.branding.banner}
+      <div
+        className='h-[200px] bg-cover bg-center rounded-t-2xl shadow-card-image'
+        style={{ backgroundImage: `url(${world.branding.banner})` }}
       />
 
-      <div className='rounded-b-2xl p-3 pt-0 pb-4 text-center'>
+      <div className='rounded-b-2xl p-3 pt-0 pb-4 text-center border border-white border-opacity-20 border-t-0'>
         <WorldIcon world={world} className='mt-[-2.25rem] mx-auto mb-2' />
 
         <div>
