@@ -1,11 +1,11 @@
 import { clsx } from 'clsx'
-import Link from 'next/link'
 import { forwardRef, useMemo } from 'react'
 import Logo from '~/assets/svg/logo.svg'
+import { NavbarItem } from '~/components/layout/NavbarItem'
+import { PlayerHead } from '~/components/PlayerHead'
 import { Arrow } from '~/components/svg/Arrow'
 import { WRLDIcon } from '~/components/svg/WRLDIcon'
 import { useProfile } from '~/lib/hooks/useProfile'
-import { PlayerHead } from '../PlayerHead'
 
 export const Navbar = forwardRef<HTMLElement>((_, ref) => {
   const { profile } = useProfile()
@@ -32,9 +32,11 @@ export const Navbar = forwardRef<HTMLElement>((_, ref) => {
       </div>
 
       <div className='flex-grow flex gap-10 justify-center font-semibold'>
-        <Link href='/'>Home</Link>
-        <Link href='/worlds'>Worlds</Link>
-        <Link href='/settings'>Settings</Link>
+        <NavbarItem href='/'>Home</NavbarItem>
+        <NavbarItem href='/worlds'>Worlds</NavbarItem>
+        <NavbarItem href='/settings' exact={false}>
+          Settings
+        </NavbarItem>
       </div>
 
       <div className='h-full w-[var(--card-width)] px-5 rounded-r-full bg-blur-light flex items-center gap-4'>
