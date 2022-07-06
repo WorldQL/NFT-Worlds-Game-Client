@@ -39,7 +39,7 @@ const Worlds: NextPage = () => {
     <Layout>
       <TitleHeader>Worlds</TitleHeader>
 
-      <div className='mb-8 grid grid-cols-[repeat(5,var(--card-width))] justify-between'>
+      <div className='mb-4 grid grid-cols-[repeat(5,var(--card-width))] justify-between'>
         <Dropdown options={worldFilter} value={filter} onChange={setFilter} />
 
         <Dropdown

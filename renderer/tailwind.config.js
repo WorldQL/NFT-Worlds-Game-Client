@@ -77,6 +77,12 @@ module.exports = {
         '.pixelated': {
           'image-rendering': 'pixelated',
         },
+        '.unpad': {
+          'margin-left': 'calc(var(--pad) * -1)',
+          'margin-right': 'calc(var(--pad) * -1)',
+          'padding-left': 'var(--pad)',
+          'padding-right': 'var(--pad)',
+        },
       })
 
       addComponents({
