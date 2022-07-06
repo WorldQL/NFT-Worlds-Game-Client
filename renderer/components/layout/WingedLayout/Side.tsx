@@ -29,8 +29,9 @@ const Side: FC<PropsWithChildren<Props>> = ({
     <div
       className={clsx(
         'w-[var(--card-width)] bg-blur-light',
-        side === 'left' && 'rounded-l-3xl',
-        side === 'right' && 'rounded-r-3xl',
+        'border border-white border-opacity-20',
+        side === 'left' && 'rounded-l-3xl border-r-0',
+        side === 'right' && 'rounded-r-3xl border-l-0',
         !fit && 'h-full',
         fit && 'h-max',
         className

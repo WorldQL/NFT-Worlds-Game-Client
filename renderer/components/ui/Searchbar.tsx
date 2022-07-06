@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { type ChangeEventHandler, type FC, useCallback, useRef } from 'react'
 import { Search } from '~/components/svg/Search'
 
@@ -23,7 +24,12 @@ export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
 
   return (
     <div
-      className='rounded-full bgblur backdrop-filter-[50px] grow flex gap-4 items-center cursor-text'
+      className={clsx(
+        'grow flex gap-4 items-center',
+        'rounded-full cursor-text',
+        'bgblur backdrop-filter-[50px]',
+        'border border-white border-opacity-20'
+      )}
       onClick={focus}
     >
       <input

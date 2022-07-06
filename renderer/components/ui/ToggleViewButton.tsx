@@ -20,7 +20,7 @@ export const ToggleViewButton: FC<Props> = ({ view, onChange }) => {
   }, [onChange])
 
   return (
-    <div className='flex bgblur rounded-full'>
+    <div className='flex bgblur rounded-full border border-white border-opacity-20'>
       <Container side='left' active={view === 'grid'} onClick={handleGridClick}>
         <GalleryView className='h-5 w-auto' />
       </Container>
@@ -51,12 +51,14 @@ const Container: FC<PropsWithChildren<ContainerProps>> = ({
 }) => (
   <div
     className={clsx(
-      '[--shadow:rgba(0,0,0,0.2)] flex items-center px-6 cursor-pointer',
+      '[--shadow:rgba(0,0,0,0.2)] flex items-center px-6 cursor-pointer border-white border-opacity-20',
       side === 'left' && '[--deg:-90deg] rounded-l-full pr-5',
       side === 'right' && '[--deg:90deg] rounded-r-full pl-5',
       active && 'bg-blur-light',
       !active &&
-        'bg-[linear-gradient(var(--deg),var(--shadow),transparent_12%)]'
+        'bg-[linear-gradient(var(--deg),var(--shadow),transparent_12%)]',
+      side === 'left' && active && 'border-r',
+      side === 'right' && active && 'border-l'
     )}
     onClick={onClick}
   >

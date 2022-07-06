@@ -48,10 +48,14 @@ export const Dropdown = <T extends Record<string, string>>({
     <div className='w-[var(--card-width)] relative font-semibold z-10'>
       <div
         className={clsx(
-          'w-full bgblur px-6 py-4 cursor-pointer flex items-center',
+          'w-full px-6 py-4',
+          'bgblur cursor-pointer',
+          'flex items-center',
+          'border border-white border-opacity-20',
           !open && 'rounded-full',
+          open && 'rounded-t-[28px] rounded-b-none border-b-0 shadow-none',
           open &&
-            'rounded-t-[28px] rounded-b-none shadow-none !backdrop-blur-[var(--blur-amount-fix)] backdrop-brightness-[var(--brightness)]'
+            '!backdrop-blur-[var(--blur-amount-fix)] backdrop-brightness-[var(--brightness)]'
         )}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
@@ -62,7 +66,11 @@ export const Dropdown = <T extends Record<string, string>>({
 
       {open && (
         <div
-          className='absolute w-full bgblur flex flex-col gap-2 rounded-b-[28px]'
+          className={clsx(
+            'absolute w-full rounded-b-[28px] bgblur',
+            'flex flex-col gap-2',
+            'border border-white border-opacity-20 border-t-0'
+          )}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >

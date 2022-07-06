@@ -24,7 +24,8 @@ export const Navbar = forwardRef<HTMLElement>((_, ref) => {
         'absolute top-0 left-0 right-0 z-40',
         'h-[4rem] mt-8',
         'flex items-center',
-        'bgblur rounded-full text-xl'
+        'bgblur rounded-full text-xl',
+        'border border-white border-opacity-20'
       )}
     >
       <div className='w-[var(--card-width)] pl-5'>
