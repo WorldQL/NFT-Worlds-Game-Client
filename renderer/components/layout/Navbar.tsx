@@ -33,6 +33,7 @@ export const Navbar = forwardRef<HTMLElement>((_, ref) => {
 
       <div className='flex-grow flex gap-10 justify-center font-semibold'>
         <NavbarItem href='/'>Home</NavbarItem>
+        <NavbarItem href='/inventory'>Inventory</NavbarItem>
         <NavbarItem href='/worlds'>Worlds</NavbarItem>
         <NavbarItem href='/settings' exact={false}>
           Settings
