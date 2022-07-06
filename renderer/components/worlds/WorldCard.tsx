@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 import { type FC, useCallback } from 'react'
 import { PlayersOnline } from '~/components/worlds/PlayersOnline'
@@ -16,7 +17,17 @@ export const WorldCard: FC<Props> = ({ world }) => {
 
   return (
     <div
-      className='mb-6 bg-gradient-to-b from-bg-top to-bg-bottom rounded-2xl shadow-xl flex flex-col w-[var(--card-width)] cursor-pointer transition-transform duration-75'
+      className={clsx(
+        'mb-6 bg-gradient-to-b from-bg-top to-bg-bottom',
+        'rounded-2xl shadow-xl',
+        'flex flex-col w-[var(--card-width)]',
+        'cursor-pointer transition-transform duration-75',
+        '[--ring-pad:-8px] relative after:absolute after:-z-10 after:opacity-0',
+        'after:top-[var(--ring-pad)] after:left-[var(--ring-pad)] after:bottom-[var(--ring-pad)] after:right-[var(--ring-pad)]',
+        'after:pointer-events-none after:rounded-3xl after:border-2 after:scale-95',
+        'after:transition-all hover:after:scale-100 hover:after:opacity-100',
+        'after:border-card-stroke'
+      )}
       onClick={handleClick}
     >
       <img
