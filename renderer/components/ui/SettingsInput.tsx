@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type FC, type PropsWithChildren, useCallback, useMemo } from 'react'
 import { Arrow } from '~/components/svg/Arrow'
 

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 import { type FC, useCallback } from 'react'
 

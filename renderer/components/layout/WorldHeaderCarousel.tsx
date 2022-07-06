@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type FC, useMemo } from 'react'
 import { WorldHeader } from '~/components/layout/WorldHeader'
 import { useCarousel } from '~/lib/hooks/useCarousel'

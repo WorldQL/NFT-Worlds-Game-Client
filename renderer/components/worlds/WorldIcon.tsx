@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type CSSProperties, type FC } from 'react'
 import { Verified } from '~/components/svg/Verified'
 import { type World } from '~/lib/data/worlds'

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import { forwardRef, useMemo } from 'react'
 import Logo from '~/assets/svg/logo.svg'

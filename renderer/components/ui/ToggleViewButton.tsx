@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type FC, PropsWithChildren, useCallback } from 'react'
 import { GalleryView } from '~/components/svg/GalleryView'
 import { ListView } from '~/components/svg/ListView'

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type FC, type PropsWithChildren, useCallback } from 'react'
 import { Close } from '~/components/svg/Close'
 import { Minimise } from '~/components/svg/Minimise'

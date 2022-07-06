@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 import { type CSSProperties, type FC, useCallback } from 'react'
 import { ButtonPrimary } from '~/components/ui/ButtonPrimary'

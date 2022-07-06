@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type FC, type PropsWithChildren, useEffect, useRef } from 'react'
 import { createGlobalState } from 'react-hooks-global-state'
 import { Navbar } from './Navbar'
