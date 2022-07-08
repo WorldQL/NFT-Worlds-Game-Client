@@ -58,6 +58,12 @@ module.exports = {
       borderRadius: {
         window: '10px',
       },
+      gridTemplateRows: {
+        inventory: 'repeat(4, 2fr) 1fr',
+      },
+      gridTemplateColumns: {
+        inventory: '1fr 2fr 1fr',
+      },
     },
   },
   plugins: [
