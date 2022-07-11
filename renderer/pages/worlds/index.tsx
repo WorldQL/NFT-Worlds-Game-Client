@@ -58,7 +58,8 @@ const Worlds: NextPage = () => {
             onChange={setSearch}
           />
 
-          <ToggleViewButton view={view} onChange={setView} />
+          {/* TODO: Table view */}
+          {/* <ToggleViewButton view={view} onChange={setView} /> */}
         </div>
       </div>
 
