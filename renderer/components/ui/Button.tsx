@@ -22,6 +22,7 @@ interface LinkProps {
 }
 
 type Props = CommonProps & (ClickProps | LinkProps)
+export type { Props as ButtonProps }
 
 export const Button: FC<PropsWithChildren<Props>> = ({
   children,
@@ -43,7 +44,9 @@ export const Button: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       className={clsx(
-        'w-[var(--card-width)] h-fit px-6 py-4 rounded-full text-lg font-bold outline-none disabled:cursor-not-allowed',
+        'w-[var(--card-width)] h-fit px-6 py-4',
+        'rounded-full outline-none disabled:cursor-not-allowed',
+        'text-lg font-bold',
         className
       )}
       type='button'
@@ -54,6 +57,3 @@ export const Button: FC<PropsWithChildren<Props>> = ({
     </button>
   )
 }
-
-type CommonSubProps = Omit<CommonProps, 'className'>
-export type ButtonProps = CommonSubProps & (ClickProps | LinkProps)
