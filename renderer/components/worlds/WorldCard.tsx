@@ -35,7 +35,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
         style={{ backgroundImage: `url(${world.branding.banner})` }}
       />
 
-      <div className='rounded-b-2xl p-3 pt-0 pb-4 text-center border border-white border-opacity-20 border-t-0'>
+      <div className='grow rounded-b-2xl p-3 pt-0 pb-4 text-center border border-white border-opacity-20 border-t-0'>
         <WorldIcon world={world} className='mt-[-2.25rem] mx-auto mb-2' />
 
         <div>
