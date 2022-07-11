@@ -1,28 +1,67 @@
 import { clsx } from 'clsx'
-import { type FC, useCallback, useMemo, useState } from 'react'
+import {
+  type CSSProperties,
+  type FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Arrow } from '~/components/svg/Arrow'
 import { Check } from '~/components/svg/Check'
 
-export type DisplayHandler<T extends Record<string, string>> = (
+type Item = string
+type Items = Record<string, Item>
+
+export type DisplayHandler<T extends Items> = (
   value: keyof T,
   options: T
 ) => string
 
-interface Props<T extends Record<string, string>> {
+interface Props<T extends Items> {
   options: T
   value: keyof T
 
   display?: DisplayHandler<T>
   onChange: (value: keyof T) => void
+
+  className?: string
+  style?: CSSProperties
 }
 
-export const Dropdown = <T extends Record<string, string>>({
+export const Dropdown = <T extends Items>({
   options,
   value,
   display,
   onChange,
+  className,
+  style,
 }: Props<T>): ReturnType<FC> => {
+  const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState<boolean>(false)
+
+  const autoClose = useCallback(
+    (ev: MouseEvent) => {
+      if (!open) return
+      if (!ref.current) return
+      if (!ev.target) return
+
+      const target = ev.target as HTMLElement
+      if (target === ref.current) return
+      if (target.parentElement === ref.current) return
+
+      setOpen(false)
+    },
+    [open, setOpen]
+  )
+
+  useEffect(() => {
+    window.addEventListener('click', autoClose)
+    return () => {
+      window.removeEventListener('click', autoClose)
+    }
+  }, [autoClose])
 
   const transform = useCallback(
     (value: keyof T) => {
@@ -33,73 +72,72 @@ export const Dropdown = <T extends Record<string, string>>({
     [options, display]
   )
 
-  const handleMouseOver = useCallback(() => setOpen(true), [setOpen])
-  const handleMouseOut = useCallback(() => setOpen(false), [setOpen])
-
-  const handleClick = useCallback<Props<T>['onChange']>(
+  const handleBodyClick = useCallback(() => setOpen(!open), [open, setOpen])
+  const handleItemClick = useCallback<Props<T>['onChange']>(
     value => {
       if (typeof onChange === 'function') onChange(value)
+      setOpen(false)
     },
-    [onChange]
+    [onChange, setOpen]
   )
 
-  const selected = useMemo<string>(() => transform(value), [value, transform])
+  const selected = useMemo<Item>(() => transform(value), [value, transform])
   return (
-    <div className='w-[var(--card-width)] relative font-semibold z-10'>
+    <div style={style} className={clsx('relative isolate z-10', className)}>
       <div
+        ref={ref}
         className={clsx(
-          'w-full px-6 py-4',
-          'bgblur cursor-pointer',
+          'font-semibold px-6 py-4',
+          'bgblur rounded-full cursor-pointer',
           'flex items-center',
-          'border border-white border-opacity-20',
-          !open && 'rounded-full',
-          open && 'rounded-t-[28px] rounded-b-none border-b-0 shadow-none',
-          open &&
-            '!backdrop-blur-[var(--blur-amount-fix)] backdrop-brightness-[var(--brightness)]'
+          'border border-white border-opacity-20'
         )}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
+        onClick={handleBodyClick}
       >
         <span className='grow'>{selected}</span>
-        <Arrow />
+
+        <Arrow
+          className={clsx(
+            'transition-transform duration-75',
+            open && 'rotate-180'
+          )}
+        />
       </div>
 
-      {open && (
-        <div
-          className={clsx(
-            'absolute w-full rounded-b-[28px] bgblur',
-            'flex flex-col gap-2',
-            'border border-white border-opacity-20 border-t-0'
-          )}
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-        >
-          <div className='h-1 border-t border-neutral-100 border-opacity-20' />
-
-          {Object.keys(options).map(key => (
-            <DropdownItem
-              key={key}
-              value={key}
-              display={transform(key)}
-              active={key === value}
-              onClick={handleClick}
-            />
-          ))}
-        </div>
-      )}
+      <div
+        className={clsx(
+          'absolute mt-3 top-full left-0 right-0',
+          'font-semibold',
+          'bgblur rounded-[29px]',
+          'border border-white border-opacity-20',
+          'transition-opacity',
+          !open && 'opacity-0 pointer-events-none',
+          open && 'opacity-100'
+        )}
+      >
+        {Object.keys(options).map(key => (
+          <DropdownItem
+            key={key}
+            value={key}
+            display={transform(key)}
+            active={key === value}
+            onClick={handleItemClick}
+          />
+        ))}
+      </div>
     </div>
   )
 }
 
-interface ItemProps<T extends Record<string, string>> {
+interface ItemProps<T extends Items> {
   value: keyof T
-  display: string
+  display: Item
   active: boolean
 
   onClick: (value: keyof T) => void
 }
 
-export const DropdownItem = <T extends Record<string, string>>({
+export const DropdownItem = <T extends Items>({
   value,
   display,
   active,
@@ -111,7 +149,7 @@ export const DropdownItem = <T extends Record<string, string>>({
 
   return (
     <div
-      className='px-6 py-3 hover:bg-blur-light bg-opacity-50 last:rounded-b-[28px] last:pb-4 cursor-pointer flex items-center'
+      className='px-6 py-3 hover:bg-blur-light bg-opacity-50 first:rounded-t-[29px] last:rounded-b-[29px] first:pt-4 last:pb-4 cursor-pointer flex items-center'
       onClick={handleClick}
     >
       <span className='grow'>{display}</span>
