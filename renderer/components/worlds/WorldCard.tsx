@@ -26,7 +26,7 @@ export const WorldCard: FC<Props> = ({ world }) => {
         'after:top-[var(--ring-pad)] after:left-[var(--ring-pad)] after:bottom-[var(--ring-pad)] after:right-[var(--ring-pad)]',
         'after:pointer-events-none after:rounded-3xl after:border-2 after:scale-95',
         'after:transition-all hover:after:scale-100 hover:after:opacity-100',
-        'after:border-card-stroke'
+        'after:border-item-stroke'
       )}
       onClick={handleClick}
     >
