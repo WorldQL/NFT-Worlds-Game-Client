@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type CSSProperties, type FC, type PropsWithChildren } from 'react'
 
 interface Props {

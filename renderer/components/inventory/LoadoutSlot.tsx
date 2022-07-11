@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { type CSSProperties, type FC, useMemo } from 'react'
 import Background from '~/assets/images/background.png'
 import { ItemSelect } from '~/components/svg/ItemSelect'
