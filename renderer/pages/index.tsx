@@ -43,14 +43,18 @@ const Root: NextPage = () => {
           <WorldSidebarContainer
             title='Top Worlds'
             // TODO: Populate with actual data
-            worlds={worlds.slice(4, 20)}
+            worlds={worlds.slice(3, 20)}
           />
         </Left>
 
         <Center>
-          <WorldGallery title='Recently Updated' worlds={worlds} />
-          <WorldGallery title='Fun Games' worlds={worlds} />
-          <WorldGallery title='Battle Royale Games' worlds={worlds} />
+          {/* TODO: Populate with actual data */}
+          <WorldGallery title='Recently Updated' worlds={worlds.slice(0, 3)} />
+          <WorldGallery title='Fun Games' worlds={worlds.slice(3, 6)} />
+          <WorldGallery
+            title='Battle Royale Games'
+            worlds={worlds.slice(6, 9)}
+          />
 
           <div className='flex flex-col items-center'>
             <ButtonContextual type='link' href='/worlds'>
