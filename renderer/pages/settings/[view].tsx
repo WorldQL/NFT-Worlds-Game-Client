@@ -1,5 +1,6 @@
 import { type NextPage } from 'next'
 import { type FC, useEffect, useState } from 'react'
+import { Card } from '~/components/layout/Card'
 import { Layout } from '~/components/layout/Layout'
 import { TitleHeader } from '~/components/layout/TitleHeader'
 import { Divider } from '~/components/settings/Divider'
@@ -18,7 +19,8 @@ const Settings: NextPage = () => {
   return (
     <Layout>
       <TitleHeader>Settings</TitleHeader>
-      <div className='flex flex-col w-full flex-grow mb-[var(--pad)] bgblur rounded-3xl'>
+
+      <Card className='w-full flex-grow mb-[var(--pad)]'>
         <SettingsNav>
           {Object.entries(viewNames).map(([id, name]) => (
             <SettingsNavItem
@@ -31,7 +33,7 @@ const Settings: NextPage = () => {
         </SettingsNav>
 
         {view === 'video' && <VideoSettings />}
-      </div>
+      </Card>
     </Layout>
   )
 }

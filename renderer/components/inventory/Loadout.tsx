@@ -1,13 +1,12 @@
 import { type FC } from 'react'
 import { LoadoutSlot } from '~/components/inventory/LoadoutSlot'
+import { Card, CardBody, CardTitle } from '~/components/layout/Card'
 
 export const Loadout: FC = () => (
-  <div className='w-[28%] flex flex-col bgblur rounded-3xl border border-white border-opacity-20'>
-    <div className='z-10 text-lg font-semibold px-6 py-4 rounded-t-3xl bg-blur-light shadow-lg'>
-      Loadout
-    </div>
+  <Card className='w-[28%]'>
+    <CardTitle className='text-lg font-semibold px-6 py-4'>Loadout</CardTitle>
 
-    <div className='grid pt-4 px-8 pb-6 h-[32rem] grid-rows-inventory grid-cols-inventory gap-2'>
+    <CardBody className='grid p-5 h-[32rem] grid-rows-inventory grid-cols-inventory gap-2'>
       <LoadoutSlot slot='hat' className='col-start-2' />
       <LoadoutSlot slot='head' className='col-start-2' />
       <LoadoutSlot slot='left-arm' className='col-start-1' />
@@ -17,6 +16,6 @@ export const Loadout: FC = () => (
       <LoadoutSlot slot='legs' />
       <LoadoutSlot slot='right-hand' />
       <LoadoutSlot slot='feet' className='col-start-2' />
-    </div>
-  </div>
+    </CardBody>
+  </Card>
 )

@@ -1,7 +1,8 @@
 import { type FC, type PropsWithChildren } from 'react'
+import { CardTitle } from '~/components/layout/Card'
 
 export const SettingsNav: FC<PropsWithChildren> = ({ children }) => (
-  <div className='z-10 font-semibold px-8 py-4 rounded-t-3xl flex gap-8 bg-blur-light shadow-lg'>
+  <CardTitle className='font-semibold px-8 py-4 flex gap-8'>
     {children}
-  </div>
+  </CardTitle>
 )
