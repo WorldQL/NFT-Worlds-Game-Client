@@ -11,6 +11,7 @@ import {
   useRef,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { Card, CardBody, CardTitle } from '~/components/layout/Card'
 import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 
 export type CloseOrFn = 'close' | (() => void)
@@ -86,27 +87,29 @@ const Modal: FC<PropsWithChildren<Props>> = ({
       )}
       onClick={handleOuterClick}
     >
-      <div
+      <Card
         className={clsx(
-          'w-[50vw] bg-blur-modal backdrop-blur-xl rounded-3xl shadow-modal transition-opacity',
+          'w-[50vw] !bg-blur-modal !backdrop-blur-xl shadow-modal transition-opacity',
           !visible && 'pointer-events-none opacity-0',
           visible && 'opacity-100'
         )}
       >
-        <div className='px-6 py-4 shadow-modal-title bg-blur-tint rounded-t-3xl'>
+        <CardTitle className='px-6 py-4 shadow-modal-title bg-blur-tint rounded-t-3xl'>
           <h1 className='text-xl font-bold'>{title}</h1>
-        </div>
+        </CardTitle>
 
-        <div className='px-6 my-6'>{children}</div>
+        <CardBody>
+          <div className='px-6 my-6'>{children}</div>
 
-        {button && (
-          <div className='pb-6 flex justify-center'>
-            <ButtonPrimary type='button' onClick={handleButtonClick}>
-              {button}
-            </ButtonPrimary>
-          </div>
-        )}
-      </div>
+          {button && (
+            <div className='pb-6 flex justify-center'>
+              <ButtonPrimary type='button' onClick={handleButtonClick}>
+                {button}
+              </ButtonPrimary>
+            </div>
+          )}
+        </CardBody>
+      </Card>
     </div>
   )
 }
