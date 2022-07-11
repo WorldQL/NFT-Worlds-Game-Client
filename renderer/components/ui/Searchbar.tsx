@@ -1,5 +1,11 @@
 import { clsx } from 'clsx'
-import { type ChangeEventHandler, type FC, useCallback, useRef } from 'react'
+import {
+  type ChangeEventHandler,
+  type CSSProperties,
+  type FC,
+  useCallback,
+  useRef,
+} from 'react'
 import { Search } from '~/components/svg/Search'
 
 interface Props {
@@ -7,9 +13,18 @@ interface Props {
   placeholder?: string
 
   onChange: (value: string) => void
+
+  className?: string
+  style?: CSSProperties
 }
 
-export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
+export const Searchbar: FC<Props> = ({
+  value,
+  placeholder,
+  onChange,
+  className,
+  style,
+}) => {
   const ref = useRef<HTMLInputElement>(null)
   const handleChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     ev => {
@@ -25,11 +40,13 @@ export const Searchbar: FC<Props> = ({ value, placeholder, onChange }) => {
   return (
     <div
       className={clsx(
-        'grow flex gap-4 items-center',
+        'flex gap-4 items-center',
         'rounded-full cursor-text',
         'bgblur backdrop-filter-[50px]',
-        'border border-white border-opacity-20'
+        'border border-white border-opacity-20',
+        className
       )}
+      style={style}
       onClick={focus}
     >
       <input

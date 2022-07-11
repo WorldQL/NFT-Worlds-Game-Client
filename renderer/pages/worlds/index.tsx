@@ -55,6 +55,7 @@ const Worlds: NextPage = () => {
           <Searchbar
             value={search}
             placeholder='Search Worlds'
+            className='grow'
             onChange={setSearch}
           />
 
