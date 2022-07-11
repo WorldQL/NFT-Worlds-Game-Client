@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle } from '~/components/layout/Card'
 
 export const Loadout: FC = () => (
   <Card className='w-[28%]'>
-    <CardTitle className='text-lg font-semibold px-6 py-4'>Loadout</CardTitle>
+    <CardTitle className='font-semibold px-6 py-4'>Loadout</CardTitle>
 
     <CardBody className='grid p-5 h-[32rem] grid-rows-inventory grid-cols-inventory gap-2'>
       <LoadoutSlot slot='hat' className='col-start-2' />

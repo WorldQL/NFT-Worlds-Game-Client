@@ -1,4 +1,5 @@
 import { type NextPage } from 'next'
+import { FullInventory } from '~/components/inventory/FullInventory'
 import { ItemSlotPicker } from '~/components/inventory/ItemSlotPicker'
 import { Loadout } from '~/components/inventory/Loadout'
 import { LoadoutContainer } from '~/components/inventory/LoadoutContainer'
@@ -14,6 +15,8 @@ const Inventory: NextPage = () => (
 
       <ItemSlotPicker />
     </LoadoutContainer>
+
+    <FullInventory />
   </Layout>
 )
 

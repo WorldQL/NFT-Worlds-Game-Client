@@ -45,6 +45,7 @@ module.exports = {
         },
         wrld: '#02a4ff',
         'card-stroke': '#fefefe',
+        'item-stroke': '#cf79fc',
       },
       boxShadow: {
         main: '0 6px 6px rgb(0 0 0 / 30%)',
