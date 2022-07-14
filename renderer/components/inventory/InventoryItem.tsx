@@ -1,5 +1,6 @@
 import { clsx } from 'clsx'
 import { type FC } from 'react'
+import { ButtonPrimary } from '~/components/ui/ButtonPrimary'
 
 interface Props {
   name: string
@@ -30,12 +31,16 @@ export const InventoryItem: FC<Props> = ({ name, image, description }) => (
         'flex items-end'
       )}
     >
-      <button
+      <ButtonPrimary
         type='button'
-        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+        className={clsx(
+          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          '!w-fit px-4 py-2'
+        )}
+        onClick={() => undefined}
       >
         Equip
-      </button>
+      </ButtonPrimary>
 
       <span className='px-5 py-4 text-sm text-neutral-200 font-light line-clamp-4'>
         {description}
